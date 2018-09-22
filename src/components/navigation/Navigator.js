@@ -2,9 +2,8 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import Home from '../Home';
 import Places from '../Places';
-import Redeem from '../Redeem';
 import Impact from '../Impact';
-import { HOME_SCREEN, PLACES_SCREEN, REDEEM_SCREEN, IMPACT_SCREEN, TAB_SCREEN } from '../../constants';
+import { HOME_SCREEN, PLACES_SCREEN, IMPACT_SCREEN, TAB_SCREEN } from '../../constants';
 
 const HomeTab = createStackNavigator({
   [HOME_SCREEN]: {
@@ -24,15 +23,6 @@ const PlacesTab = createStackNavigator({
   }
 });
 
-const RedeemTab = createStackNavigator({
-  [REDEEM_SCREEN]: {
-    screen: Redeem,
-    navigationOptions: () => ({
-      header: null
-    })
-  }
-});
-
 const ImpactTab = createStackNavigator({
   [IMPACT_SCREEN]: {
     screen: Impact,
@@ -46,7 +36,6 @@ const AppTabNavigator = createBottomTabNavigator(
   {
     HomeTab,
     PlacesTab,
-    RedeemTab,
     ImpactTab
   },
   {
