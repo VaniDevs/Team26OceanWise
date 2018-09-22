@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "react": "16.4.1",
-    "react-native": "0.56.1"
+    "react-native": "0.56.1",
+    "react-navigation": "^2.16.0",
+    "styled-components": "^3.4.9"
   },
   "devDependencies": {
     "@babel/core": "^7.0.1",
@@ -35,6 +37,12 @@
     "preset": "react-native",
     "transform": {
       "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
-    }
+    },
+    "moduleNameMapper": {
+      "styled-components": "<rootDir>/node_modules/styled-components/dist/styled-components.native.cjs.js"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-navigation)"
+    ]
   }
 }

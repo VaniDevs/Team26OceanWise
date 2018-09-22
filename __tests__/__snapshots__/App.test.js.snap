@@ -2,36 +2,221 @@
 
 exports[`Component app renders correctly 1`] = `
 <View
+  onLayout={[Function]}
   style={
     Object {
-      "alignItems": "center",
-      "backgroundColor": "#F5FCFF",
       "flex": 1,
-      "justifyContent": "center",
     }
   }
 >
-  <Text
+  <View
+    onMoveShouldSetResponder={[Function]}
+    onMoveShouldSetResponderCapture={[Function]}
+    onResponderEnd={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderReject={[Function]}
+    onResponderRelease={[Function]}
+    onResponderStart={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    onStartShouldSetResponderCapture={[Function]}
     style={
-      Object {
-        "fontSize": 20,
-        "margin": 10,
-        "textAlign": "center",
-      }
+      Array [
+        Object {
+          "flex": 1,
+          "flexDirection": "column-reverse",
+        },
+        Object {
+          "backgroundColor": "#000",
+        },
+      ]
     }
   >
-    Welcome to React Native!
-  </Text>
-  <Text
-    style={
-      Object {
-        "color": "#333333",
-        "marginBottom": 5,
-        "textAlign": "center",
+    <View
+      style={
+        Object {
+          "flex": 1,
+        }
       }
-    }
-  >
-    To get started, edit App.js
-  </Text>
+    >
+      <View
+        accessibilityElementsHidden={false}
+        pointerEvents="auto"
+        style={
+          Object {
+            "backgroundColor": "#E9E9EF",
+            "bottom": 0,
+            "left": 0,
+            "opacity": 1,
+            "paddingTop": 0,
+            "position": "absolute",
+            "right": 0,
+            "shadowColor": "black",
+            "shadowOffset": Object {
+              "height": 0,
+              "width": 0,
+            },
+            "shadowOpacity": 0.2,
+            "shadowRadius": 5,
+            "top": 0,
+            "transform": Array [
+              Object {
+                "translateX": 0,
+              },
+              Object {
+                "translateY": 0,
+              },
+            ],
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "justifyContent": "center",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "backgroundColor": "gray",
+                "height": 40,
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "black",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              0
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "black",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              EnviroPoints
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "black",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              Activity
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "black",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              Locate
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "black",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              Activity
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      pointerEvents="box-none"
+      style={
+        Object {
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "#FFF",
+            "transform": Array [
+              Object {
+                "translateX": -750,
+              },
+            ],
+          }
+        }
+      >
+        <View
+          onLayout={[Function]}
+          pointerEvents="box-none"
+          style={
+            Object {
+              "backgroundColor": "#FFF",
+              "borderBottomColor": "#A7A7AA",
+              "borderBottomWidth": 0.5,
+              "height": 64,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 20,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
+      </View>
+    </View>
+  </View>
 </View>
 `;
