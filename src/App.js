@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import { AsyncStorage } from 'react-native';
 
 import Navigation from './components/navigation';
-import { STORE_USER_ENVIRO_POINTS } from './constants';
+import { STORE_USER_CUPS_SAVED, STORE_FAV_CAFES, STORE_USER_ENVIRO_POINTS } from './constants';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.getData(STORE_USER_ENVIRO_POINTS).then(value => {
+    this.getData(STORE_FAV_CAFES).then(value => {
       // Initialize store if it doesn't exist
       if (!value) {
+        const emptyArray = [];
         this.storeData(STORE_USER_ENVIRO_POINTS, '0');
+        this.storeData(STORE_USER_CUPS_SAVED, '0');
+        this.storeData(STORE_FAV_CAFES, JSON.stringify(emptyArray));
       }
     });
   }
