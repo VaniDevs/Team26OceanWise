@@ -1,0 +1,3 @@
+rootProject.name = 'Team26OceanWise'
+
+include ':app'
