@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Navigator from './Navigator';
+import AppNavigator from './Navigator';
 
 function Navigation() {
-  return <Navigator />;
+  return <AppNavigator />;
 }
 
 export default Navigation;
