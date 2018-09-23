@@ -1,69 +1,74 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { ACTIVITY_SCREEN, fontFamily, colors } from '../constants';
+import { Image } from 'react-native';
+import { ACTIVITY_SCREEN } from '../constants';
+import { fontFamily, colors, Section, StyledButton, ButtonInner, StyledButtonShadow, ButtonTitle } from '../styles';
+import { iconBrand, iconDiv, iconCup, iconArrowRight } from '../../assets/images';
 
 import AppProvider, { AppContext } from '../AppProvider';
 
 const Container = styled.View`
   flex: 1;
-  justify-content: center;
+  justify-content: space-between;
   background-color: ${colors.bg};
 `;
 
 const HeaderSection = styled.View`
   padding-vertical: 20px;
   align-items: center;
+  border-bottom-width: 1px;
+  border-bottom-color: ${colors.primary};
 `;
-const EnviroPoints = styled.View`
+const HeaderText = styled.Text`
+  font-family: ${fontFamily.plexMonoOblique};
+  font-size: 24px;
+  letter-spacing: 3px;
+  color: ${colors.primary};
+`;
+
+const BodySection = styled.View`
+  padding-vertical: 20px;
   align-items: center;
 `;
-const SubTitle = styled.Text`
-  color: ${colors.text};
-  font-size: 16px;
-  font-family: ${fontFamily.plexMono};
-`;
-const PointNumber = styled.Text`
-  color: ${colors.text};
-  font-size: 90px;
-  font-family: ${fontFamily.plexMonoBold};
-`;
-const PointUnit = styled.Text`
-  color: ${colors.subText};
+const BrandTitle = styled.Text`
+  margin-vertical: 10px;
   font-size: 20px;
+  font-family: ${fontFamily.plexMonoOblique};
+  color: ${colors.secondary};
+`;
+const SubTitle = styled.Text`
+  color: ${colors.fade};
+  font-size: 12px;
   font-family: ${fontFamily.plexMonoBold};
   text-transform: uppercase;
   letter-spacing: 2px;
 `;
-
-const Section = styled.View`
-  margin-horizontal: 50px;
-  padding-vertical: 20px;
-`;
-const StyledButton = styled.TouchableOpacity`
-  position: relative;
-`;
-const ButtonInner = styled.View`
-  background: ${colors.button};
-  padding-vertical: 10px;
-  padding-horizontal: 10px;
-  border-radius: 5px;
+const EnviroPoints = styled.View`
   align-items: center;
-  justify-content: center;
-  height: 48px;
 `;
-const StyledButtonShadow = styled.View`
-  position: absolute;
-  height: 48px;
-  background: ${colors.buttonShadow};
-  border-radius: 5px;
-  z-index: 0;
-  width: 100%;
-  bottom: -10px;
-  left: -10px;
+const PointNumber = styled.Text`
+  color: ${colors.text};
+  font-size: 90px;
+  font-family: ${fontFamily.plexMono};
 `;
-const ButtonTitle = styled.Text`
-  color: ${colors.bg};
+const PointUnit = styled.Text`
+  color: ${colors.fade};
+  font-size: 16px;
+  font-family: ${fontFamily.plexMonoBold};
+  text-transform: uppercase;
+  letter-spacing: 4px;
+`;
+
+const SavingContainer = styled.View`
+  flex-direction: row;
+`;
+const Savings = styled.Text`
+  color: ${colors.primary};
+  font-size: 15px;
+  font-family: ${fontFamily.plexMonoBold};
+  text-transform: uppercase;
+  letter-spacing: 4px;
 `;
 
 function Home({ navigation }) {
@@ -73,12 +78,25 @@ function Home({ navigation }) {
         {context => (
           <Container>
             <HeaderSection>
-              <SubTitle>Seedling</SubTitle>
+              <HeaderText>kafeewise</HeaderText>
+            </HeaderSection>
+
+            <BodySection>
+              <Image source={iconBrand} />
+              <BrandTitle>Seahorse</BrandTitle>
+              <SubTitle>Achivement</SubTitle>
               <EnviroPoints>
                 <PointNumber>{context.enviroPoints}</PointNumber>
                 <PointUnit>enviro points</PointUnit>
               </EnviroPoints>
-            </HeaderSection>
+              <Image source={iconDiv} style={{ marginVertical: 20 }} />
+
+              <SavingContainer>
+                <Image source={iconCup} style={{ marginHorizontal: 10, marginVertical: 3 }} />
+                <Savings>250 cups saved</Savings>
+              </SavingContainer>
+            </BodySection>
+
             <Section>
               <StyledButton
                 onPress={() => {
@@ -88,6 +106,7 @@ function Home({ navigation }) {
                 <StyledButtonShadow />
                 <ButtonInner>
                   <ButtonTitle>Collect Stamps</ButtonTitle>
+                  <Image source={iconArrowRight} style={{ marginHorizontal: 10 }} />
                 </ButtonInner>
               </StyledButton>
             </Section>

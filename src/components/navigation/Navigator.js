@@ -13,6 +13,7 @@ import {
   ACTIVITY_SCREEN,
   SCANNER_SCREEN
 } from '../../constants';
+import { colors } from '../../styles';
 
 const HomeTab = createStackNavigator({
   [HOME_SCREEN]: {
@@ -65,7 +66,7 @@ const AppTabNavigator = createBottomTabNavigator(
       activeTintColor: '#000',
       allowFontScaling: false,
       style: {
-        backgroundColor: '#fff'
+        backgroundColor: colors.bg
       }
     }
   }

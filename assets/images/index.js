@@ -1,1 +1,13 @@
-export const iconSeedling = require('./icon-seedling.png');
+export const iconDiv = require('./div.png');
+export const iconDot = require('./dot.png');
+export const iconDotActive = require('./dot--active.png');
+export const iconArrowRight = require('./icon-arrow--right.png');
+export const iconBrand = require('./icon-brand.png');
+export const iconChevronLeft = require('./icon-chevron--left.png');
+export const iconCup = require('./icon-cup.png');
+export const iconHome = require('./icon-home.png');
+export const iconHomeActive = require('./icon-home--active.png');
+export const iconImpact = require('./icon-impact.png');
+export const iconImpactActive = require('./icon-impact--active.png');
+export const iconPlaces = require('./icon-places.png');
+export const iconPlacesActive = require('./icon-places--active.png');

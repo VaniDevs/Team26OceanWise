@@ -1,81 +1,97 @@
 import React, { Component } from 'react';
-import { Alert, Platform, TextInput } from 'react-native';
+import { Alert, Platform, TextInput, Image, TouchableHighlight } from 'react-native';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Permissions from 'react-native-permissions';
 
-import { ACTIVITY_SCREEN, SCANNER_SCREEN } from '../constants';
+import { HOME_SCREEN, SCANNER_SCREEN } from '../constants';
+import { fontFamily, colors, Section, StyledButton, ButtonInner, StyledButtonShadow, ButtonTitle } from '../styles';
+import { iconArrowRight, iconChevronLeft } from '../../assets/images';
 
 const Container = styled.View`
   flex: 1;
-  justify-content: center;
-  background-color: #f2ebde;
+  justify-content: space-between;
+  background-color: ${colors.bg};
 `;
 
 const PageTitle = styled.Text`
-  font-size: 24px;
+  font-family: ${fontFamily.plexMonoBold};
+  font-size: 15px;
+  color: ${colors.label};
+  letter-spacing: 2px;
+  text-transform: uppercase;
 `;
-const PageDesc = styled.Text`
-  color: black;
+const BackButton = styled.TouchableOpacity`
+  padding-horizontal: 20px;
+  position: absolute;
+  left: 0;
 `;
 
 const HeaderSection = styled.View`
-  padding-vertical: 20px;
+  position: relative;
+  padding-vertical: 10px;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
 `;
 
 const ListGroup = styled.View`
   padding-vertical: 20px;
+  background: white;
+  border-radius: 9px;
+  box-shadow: 0 20px 10px rgba(96, 60, 9, 0.2);
+`;
+const ListHeader = styled.View`
+  padding-vertical: 10px;
+  margin-vertical: 20px;
+  flex-direction: row;
+  border-top-width: 1px;
+  border-top-color: rgba(96, 60, 9, 0.2);
+  border-bottom-width: 1px;
+  border-bottom-color: rgba(96, 60, 9, 0.2);
+`;
+const ListLabel = styled.Text`
+  padding-horizontal: 10px;
+  color: ${colors.label};
+  font-size: 12px;
+  font-family: ${fontFamily.plexMono};
+  text-transform: uppercase;
 `;
 const ListItem = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
-  padding-horizontal: 20px;
-  padding-vertical: 10px;
+  align-items: center;
+  margin-horizontal: 20px;
+  margin-vertical: 20px;
 `;
 const ListText = styled.Text`
-  color: black;
+  color: ${colors.label};
+  font-size: 16px;
+  font-family: ${fontFamily.plexSansBold};
+  margin-horizontal: 10px;
 `;
-const ItemPoint = styled.Text`
-  color: red;
+const ListNumber = styled.Text`
+  color: ${colors.secondary};
+  align-self: center;
+  font-size: 20px;
 `;
 
-const Section = styled.View`
-  margin-horizontal: 50px;
-  padding-vertical: 20px;
-`;
-
-const StyledButton = styled.TouchableOpacity`
-  position: relative;
-`;
-const ButtonInner = styled.View`
-  background: #142c46;
-  padding-vertical: 10px;
-  padding-horizontal: 10px;
-  border-radius: 5px;
-  align-items: center;
-  justify-content: center;
-  height: 48px;
-`;
-const StyledButtonShadow = styled.View`
-  position: absolute;
-  height: 48px;
-  background: #fc954c;
-  border-radius: 5px;
-  z-index: 0;
-  width: 100%;
-  bottom: -10px;
-  left: -10px;
-`;
-const ButtonTitle = styled.Text`
-  color: white;
-`;
+const textInputStyle = {
+  width: 37,
+  height: 42,
+  borderColor: 'gray',
+  borderWidth: 1,
+  backgroundColor: 'white',
+  borderRadius: 3,
+  paddingVertical: 10,
+  paddingHorizontal: 10
+};
 
 class Activity extends Component {
   state = {
-    cup_qty: '0',
-    lid_qty: '0'
+    cup_qty: null,
+    lid_qty: null,
+    togo_qty: null
   };
 
   // iOS only
@@ -130,64 +146,81 @@ class Activity extends Component {
   };
 
   render() {
+    const { navigation } = this.props;
     return (
       <Container>
-        <HeaderSection>
-          <PageTitle>Collect Coffee</PageTitle>
-          <PageDesc>Select how you take your coffee</PageDesc>
-        </HeaderSection>
         <Section>
           <ListGroup>
+            <HeaderSection>
+              <BackButton
+                onPress={() => {
+                  navigation.goBack();
+                }}
+              >
+                <Image source={iconChevronLeft} />
+              </BackButton>
+              <PageTitle>Serving Type</PageTitle>
+            </HeaderSection>
+
+            <ListHeader>
+              <ListLabel numberOfLines={1} style={{ width: '20%' }}>
+                Qty
+              </ListLabel>
+              <ListLabel numberOfLines={1} style={{ width: '40%' }}>
+                Type
+              </ListLabel>
+              <ListLabel numberOfLines={1} style={{ width: '20%' }}>
+                Points
+              </ListLabel>
+              <ListLabel numberOfLines={1} style={{ width: '20%' }}>
+                Save
+              </ListLabel>
+            </ListHeader>
+
             <ListItem>
               <TextInput
-                style={{
-                  height: 24,
-                  borderColor: 'gray',
-                  borderWidth: 1,
-                  backgroundColor: 'white',
-                  paddingHorizontal: 10,
-                  width: 50,
-                  borderRadius: 3
-                }}
+                style={textInputStyle}
                 keyboardType="number-pad"
                 onChangeText={cup_qty => this.setState({ cup_qty })}
                 value={this.state.cup_qty}
               />
-              <ListText>Mug / Cup</ListText>
-              <ItemPoint>
-                {Number(this.state.cup_qty) * 10}
-                pts
-              </ItemPoint>
+              <ListText style={{ width: '45%' }}>Own cup or instore mug</ListText>
+              <ListNumber style={{ width: '20%' }}>{Number(this.state.cup_qty) * 100}</ListNumber>
+              <ListNumber style={{ width: '15%' }}>{Number(this.state.cup_qty) * -10}c</ListNumber>
             </ListItem>
 
             <ListItem>
               <TextInput
-                style={{
-                  height: 24,
-                  borderColor: 'gray',
-                  borderWidth: 1,
-                  backgroundColor: 'white',
-                  paddingHorizontal: 10,
-                  width: 50,
-                  borderRadius: 3
-                }}
+                style={textInputStyle}
                 keyboardType="number-pad"
                 onChangeText={lid_qty => this.setState({ lid_qty })}
                 value={this.state.lid_qty}
               />
-              <ListText>ToGo with no lid</ListText>
-              <ItemPoint>
-                {Number(this.state.lid_qty) * 5}
-                pts
-              </ItemPoint>
+              <ListText style={{ width: '45%' }}>No lid</ListText>
+              <ListNumber style={{ width: '20%' }}>{Number(this.state.lid_qty) * 25}</ListNumber>
+              <ListNumber style={{ width: '15%' }}>0</ListNumber>
+            </ListItem>
+
+            <ListItem>
+              <TextInput
+                style={textInputStyle}
+                keyboardType="number-pad"
+                onChangeText={togo_qty => this.setState({ togo_qty })}
+                value={this.state.togo_qty}
+              />
+              <ListText style={{ width: '45%' }}>To go cup</ListText>
+              <ListNumber style={{ width: '20%' }}>0</ListNumber>
+              <ListNumber style={{ width: '15%' }}>0</ListNumber>
             </ListItem>
           </ListGroup>
         </Section>
+
         <Section>
           <StyledButton onPress={() => this.scanQRCode()}>
             <StyledButtonShadow />
             <ButtonInner>
               <ButtonTitle>SCAN</ButtonTitle>
+              <Image source={iconArrowRight} style={{ marginHorizontal: 10 }} />
             </ButtonInner>
           </StyledButton>
         </Section>
