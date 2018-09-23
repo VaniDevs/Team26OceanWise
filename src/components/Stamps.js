@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Image } from 'react-native';
-import { HOME_SCREEN } from '../constants';
 import {
   fontFamily,
   colors,
@@ -19,7 +18,6 @@ import {
   iconDotActive,
   iconFreeCoffee,
   iconFreeCoffeeActive,
-  logo29thParallel,
   bgCelebrate
 } from '../../assets/images';
 import BackButton from './common/BackButton';
@@ -62,10 +60,9 @@ const StampLabel = styled.Text`
 
 // @INGA: PLEASE MAKE THIS DYNAMIC
 // the full stamp static page is STAMP_FULL_SCREEN (will direct to REDEEM_SCREEN)
-function Stamps({ navigation, screenProps }) {
-  const { context } = screenProps;
-  const { logo } = navigation.state.params;
-  console.log('navigation.state.params: ', navigation.state.params);
+function Stamps({ navigation }) {
+  const stampIcons = new Array(10).fill();
+  const { logo, coffeeAmount, coffeeHouse } = navigation.state.params;
 
   return (
     <Container>
@@ -78,21 +75,20 @@ function Stamps({ navigation, screenProps }) {
               }}
             />
           </HeaderSection>
-          <Image source={logo29thParallel} style={{ marginHorizontal: 10, alignSelf: 'center' }} />
-          <CardDesc>49th Parallel Café &amp; Lucky's Doughnuts - MAIN</CardDesc>
+          <Image source={logo} style={{ marginHorizontal: 10, alignSelf: 'center' }} />
+          <CardDesc>{coffeeHouse}</CardDesc>
           <StampContainer>
-            <StampLabel>1/10</StampLabel>
+            <StampLabel>{`${coffeeAmount}/10`}</StampLabel>
             <StampList>
-              <Image source={iconDotActive} />
-              <Image source={iconDot} />
-              <Image source={iconDot} />
-              <Image source={iconDot} />
-              <Image source={iconDot} />
-              <Image source={iconDot} />
-              <Image source={iconDot} />
-              <Image source={iconDot} />
-              <Image source={iconDot} />
-              <Image source={iconFreeCoffee} />
+              {stampIcons.map((item, index) => {
+                if (index < coffeeAmount) {
+                  return <Image source={iconDotActive} />;
+                }
+                if (index === stampIcons.length - 1) {
+                  return <Image source={iconFreeCoffee} />;
+                }
+                return <Image source={iconDot} />;
+              })}
             </StampList>
           </StampContainer>
         </Card>
@@ -114,15 +110,12 @@ function Stamps({ navigation, screenProps }) {
   );
 }
 Stamps.propTypes = {
-  screenProps: PropTypes.shape({
-    context: PropTypes.shape({}).isRequired
-  }).isRequired,
   navigation: PropTypes.shape({
     state: PropTypes.shape({
       params: PropTypes.shape({
-        logo: PropTypes.string.isRequired,
-        enviroPoints: PropTypes.number,
-        cupsSaved: PropTypes.number
+        coffeeHouse: PropTypes.string.isRequired,
+        logo: PropTypes.number.isRequired,
+        coffeeAmount: PropTypes.number
       })
     }),
     navigate: PropTypes.func.isRequired

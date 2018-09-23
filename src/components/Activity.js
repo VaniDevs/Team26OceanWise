@@ -138,13 +138,15 @@ class Activity extends Component {
   calculateEnviroPoints = () => {
     const { cupQuantity, lidQuantity } = this.state;
 
+    let enviroPoints = 0;
+
     if (cupQuantity) {
-      return cupQuantity * 100;
+      enviroPoints += cupQuantity * 100;
     }
     if (lidQuantity) {
-      return lidQuantity * 25;
+      enviroPoints += lidQuantity * 25;
     }
-    return 0;
+    return enviroPoints;
   };
 
   navigateToScanner = () => {

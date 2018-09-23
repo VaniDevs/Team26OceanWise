@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import AppProvider, { AppContext } from '../AppProvider';
 import { STAMPS_SCREEN } from '../constants';
 import { colors, fontFamily } from '../styles';
+import { logo29thParallel } from '../../assets/images';
 
 const HeaderSection = styled.View`
   padding-vertical: 10px;
@@ -26,24 +27,24 @@ const ScanText = styled.Text`
 class ScanScreen extends Component {
   onSuccess = (code, context) => {
     const { navigation } = this.props;
-    const { enviroPoints, cupsSaved, togoQuantity } = navigation.state.params;
-
-    // CHECK IF COFFEE HOUSE EXISTS
-    console.log('inga');
-    console.log('code: ', code);
-    console.log('context: ', context);
+    const { enviroPoints, cupsSaved, togoQuantity, lidQuantity } = navigation.state.params;
+    const prevAquiredPoints = context.favoriteCafes.length > 0 ? context.favoriteCafes[0].points : 0;
 
     context.addEnviroPoints(enviroPoints);
     context.addCupsSaved(cupsSaved);
 
-    //context.addCafe((points: togoQuantity));
+    const coffeeAmount = Number(cupsSaved || togoQuantity || lidQuantity) + prevAquiredPoints;
+
+    // TODO use code.logo instead of hardcoded logo
+    // and grab coffee house name from the URL
+    context.addPointsToCafe("49th Parallel Café &amp; Lucky's Doughnuts - MAIN", logo29thParallel, coffeeAmount);
 
     navigation.navigate({
       routeName: STAMPS_SCREEN,
       params: {
-        logo: code.data,
-        enviroPoints,
-        cupsSaved
+        logo: logo29thParallel,
+        coffeeAmount,
+        coffeeHouse: "49th Parallel Café &amp; Lucky's Doughnuts - MAIN"
       }
     });
   };

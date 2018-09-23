@@ -50,10 +50,17 @@ class AppProvider extends React.Component {
     storeData(STORE_USER_CUPS_SAVED, updatedCupsSaved.toString());
   };
 
-  addCafe = (cafe, logo) => {
+  addPointsToCafe = (cafe, logo, points) => {
     const { favoriteCafes } = this.state;
-    const cafeRecord = { cafe, logo, points: 0 };
-    favoriteCafes.push(cafeRecord);
+    const cafeRecord = { cafe, logo, points };
+
+    // TODO check if coffee house exists and change record
+    // Otherwise, push new record
+    if (favoriteCafes.length > 0) {
+      favoriteCafes[0] = cafeRecord;
+    } else {
+      favoriteCafes.push(cafeRecord);
+    }
     this.setState({ favoriteCafes });
     storeData(STORE_FAV_CAFES, JSON.stringify(favoriteCafes));
   };
@@ -66,7 +73,7 @@ class AppProvider extends React.Component {
           ...this.state,
           addEnviroPoints: this.addEnviroPoints,
           addCupsSaved: this.addCupsSaved,
-          addCafe: this.addCafe
+          addPointsToCafe: this.addPointsToCafe
         }}>
         {children}
       </AppContext.Provider>
