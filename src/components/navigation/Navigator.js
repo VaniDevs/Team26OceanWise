@@ -6,6 +6,8 @@ import Impact from '../Impact';
 import Activity from '../Activity';
 import Scanner from '../Scanner';
 import Stamps from '../Stamps';
+import StampsFull from '../StampsFull';
+import Redeem from '../Redeem';
 import {
   HOME_SCREEN,
   PLACES_SCREEN,
@@ -13,7 +15,9 @@ import {
   TAB_SCREEN,
   ACTIVITY_SCREEN,
   SCANNER_SCREEN,
-  STAMPS_SCREEN
+  STAMPS_SCREEN,
+  STAMPS_FULL_SCREEN,
+  REDEEM_SCREEN
 } from '../../constants';
 import { colors } from '../../styles';
 
@@ -36,8 +40,14 @@ const HomeTab = createStackNavigator({
       header: null
     })
   },
-  [STAMPS_SCREEN]: {
-    screen: Stamps,
+  [STAMPS_FULL_SCREEN]: {
+    screen: StampsFull,
+    navigationOptions: () => ({
+      header: null
+    })
+  },
+  [REDEEM_SCREEN]: {
+    screen: Redeem,
     navigationOptions: () => ({
       header: null
     })

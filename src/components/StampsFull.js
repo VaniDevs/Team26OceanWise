@@ -1,18 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Image } from 'react-native';
-import { ACTIVITY_SCREEN } from '../constants';
-import {
-  fontFamily,
-  colors,
-  Container,
-  Section,
-  StyledButton,
-  ButtonInner,
-  StyledButtonShadow,
-  ButtonTitle
-} from '../styles';
+import { Image, ImageBackground } from 'react-native';
+import { REDEEM_SCREEN } from '../constants';
+import { fontFamily, colors, Section, StyledButton, ButtonInner, StyledButtonHalo, ButtonTitle } from '../styles';
 import {
   iconArrowRight,
   iconChevronLeft,
@@ -26,6 +17,11 @@ import {
 
 import AppProvider, { AppContext } from '../AppProvider';
 
+const Container = styled.View`
+  flex: 1;
+  justify-content: space-between;
+  background: ;
+`;
 const HeaderSection = styled.View`
   position: relative;
   padding-vertical: 10px;
@@ -67,14 +63,31 @@ const StampLabel = styled.Text`
   font-family: ${fontFamily.plexSansBold};
 `;
 
-// @INGA: PLEASE MAKE THIS DYNAMIC
-// the full stamp static page is STAMP_FULL_SCREEN (will direct to REDEEM_SCREEN)
+const Message = styled.Text`
+  color: white;
+  font-size: 16px;
+  font-family: ${fontFamily.plexSansBold};
+  text-align: center;
+  margin-vertical: 50px;
+`;
+
 function Stamps({ navigation }) {
+  const resizeMode = 'center';
   return (
     <AppProvider>
       <AppContext.Consumer>
         {context => (
-          <Container>
+          <ImageBackground
+            source={bgCelebrate}
+            style={{
+              flex: 1,
+              resizeMode,
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              justifyContent: 'center'
+            }}
+          >
             <Section>
               <Card>
                 <HeaderSection>
@@ -93,34 +106,32 @@ function Stamps({ navigation }) {
                   <StampLabel>1/10</StampLabel>
                   <StampList>
                     <Image source={iconDotActive} />
-                    <Image source={iconDot} />
-                    <Image source={iconDot} />
-                    <Image source={iconDot} />
-                    <Image source={iconDot} />
-                    <Image source={iconDot} />
-                    <Image source={iconDot} />
-                    <Image source={iconDot} />
-                    <Image source={iconDot} />
-                    <Image source={iconFreeCoffee} />
+                    <Image source={iconDotActive} />
+                    <Image source={iconDotActive} />
+                    <Image source={iconDotActive} />
+                    <Image source={iconDotActive} />
+                    <Image source={iconDotActive} />
+                    <Image source={iconDotActive} />
+                    <Image source={iconDotActive} />
+                    <Image source={iconDotActive} />
+                    <Image source={iconFreeCoffeeActive} />
                   </StampList>
                 </StampContainer>
               </Card>
-            </Section>
-
-            <Section>
+              <Message>Woohooo! You have earned a free coffee in your cup or instore!</Message>
               <StyledButton
                 onPress={() => {
-                  navigation.navigate(ACTIVITY_SCREEN);
+                  navigation.navigate(REDEEM_SCREEN);
                 }}
               >
-                <StyledButtonShadow />
+                <StyledButtonHalo />
                 <ButtonInner>
-                  <ButtonTitle>Finish</ButtonTitle>
+                  <ButtonTitle>Free Coffee</ButtonTitle>
                   <Image source={iconArrowRight} style={{ marginHorizontal: 10 }} />
                 </ButtonInner>
               </StyledButton>
             </Section>
-          </Container>
+          </ImageBackground>
         )}
       </AppContext.Consumer>
     </AppProvider>

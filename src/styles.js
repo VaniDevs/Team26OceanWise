@@ -22,6 +22,12 @@ export const colors = {
 };
 
 // styles
+export const Container = styled.View`
+  flex: 1;
+  justify-content: space-between;
+  background-color: ${colors.bg};
+`;
+
 export const Section = styled.View`
   margin-horizontal: 24px;
   padding-vertical: 50px;

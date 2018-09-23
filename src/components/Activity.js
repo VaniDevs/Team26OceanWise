@@ -5,14 +5,17 @@ import styled from 'styled-components';
 import Permissions from 'react-native-permissions';
 
 import { HOME_SCREEN, SCANNER_SCREEN } from '../constants';
-import { fontFamily, colors, Section, StyledButton, ButtonInner, StyledButtonShadow, ButtonTitle } from '../styles';
+import {
+  fontFamily,
+  colors,
+  Container,
+  Section,
+  StyledButton,
+  ButtonInner,
+  StyledButtonShadow,
+  ButtonTitle
+} from '../styles';
 import { iconArrowRight, iconChevronLeft } from '../../assets/images';
-
-const Container = styled.View`
-  flex: 1;
-  justify-content: space-between;
-  background-color: ${colors.bg};
-`;
 
 const PageTitle = styled.Text`
   font-family: ${fontFamily.plexMonoBold};
@@ -72,7 +75,7 @@ const ListText = styled.Text`
 `;
 const ListNumber = styled.Text`
   color: ${colors.secondary};
-  align-self: center;
+  text-align: center;
   font-size: 20px;
 `;
 
@@ -84,7 +87,8 @@ const textInputStyle = {
   backgroundColor: 'white',
   borderRadius: 3,
   paddingVertical: 10,
-  paddingHorizontal: 10
+  paddingHorizontal: 10,
+  textAlign: 'center'
 };
 
 class Activity extends Component {
@@ -163,16 +167,16 @@ class Activity extends Component {
             </HeaderSection>
 
             <ListHeader>
-              <ListLabel numberOfLines={1} style={{ width: '20%' }}>
+              <ListLabel numberOfLines={1} style={{ width: '20%', textAlign: 'center' }}>
                 Qty
               </ListLabel>
               <ListLabel numberOfLines={1} style={{ width: '40%' }}>
                 Type
               </ListLabel>
-              <ListLabel numberOfLines={1} style={{ width: '20%' }}>
+              <ListLabel numberOfLines={1} style={{ width: '20%', textAlign: 'center' }}>
                 Points
               </ListLabel>
-              <ListLabel numberOfLines={1} style={{ width: '20%' }}>
+              <ListLabel numberOfLines={1} style={{ width: '20%', textAlign: 'center' }}>
                 Save
               </ListLabel>
             </ListHeader>
@@ -184,9 +188,12 @@ class Activity extends Component {
                 onChangeText={cup_qty => this.setState({ cup_qty })}
                 value={this.state.cup_qty}
               />
-              <ListText style={{ width: '45%' }}>Own cup or instore mug</ListText>
+              <ListText style={{ width: '40%' }}>Own cup or instore mug</ListText>
               <ListNumber style={{ width: '20%' }}>{Number(this.state.cup_qty) * 100}</ListNumber>
-              <ListNumber style={{ width: '15%' }}>{Number(this.state.cup_qty) * -10}c</ListNumber>
+              <ListNumber style={{ width: '20%', textAlign: 'right' }}>
+                {Number(this.state.cup_qty) * -10}
+c
+              </ListNumber>
             </ListItem>
 
             <ListItem>
@@ -196,9 +203,9 @@ class Activity extends Component {
                 onChangeText={lid_qty => this.setState({ lid_qty })}
                 value={this.state.lid_qty}
               />
-              <ListText style={{ width: '45%' }}>No lid</ListText>
+              <ListText style={{ width: '40%' }}>No lid</ListText>
               <ListNumber style={{ width: '20%' }}>{Number(this.state.lid_qty) * 25}</ListNumber>
-              <ListNumber style={{ width: '15%' }}>0</ListNumber>
+              <ListNumber style={{ width: '20%', textAlign: 'right' }}>0c</ListNumber>
             </ListItem>
 
             <ListItem>
@@ -208,9 +215,9 @@ class Activity extends Component {
                 onChangeText={togo_qty => this.setState({ togo_qty })}
                 value={this.state.togo_qty}
               />
-              <ListText style={{ width: '45%' }}>To go cup</ListText>
+              <ListText style={{ width: '40%' }}>To go cup</ListText>
               <ListNumber style={{ width: '20%' }}>0</ListNumber>
-              <ListNumber style={{ width: '15%' }}>0</ListNumber>
+              <ListNumber style={{ width: '20%', textAlign: 'right' }}>0c</ListNumber>
             </ListItem>
           </Card>
         </Section>

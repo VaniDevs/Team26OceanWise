@@ -2,17 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Image } from 'react-native';
-import { ACTIVITY_SCREEN, STAMPS_SCREEN } from '../constants';
-import { fontFamily, colors, Section, StyledButton, ButtonInner, StyledButtonShadow, ButtonTitle } from '../styles';
+import { ACTIVITY_SCREEN } from '../constants';
+import {
+  fontFamily,
+  colors,
+  Container,
+  Section,
+  StyledButton,
+  ButtonInner,
+  StyledButtonShadow,
+  ButtonTitle
+} from '../styles';
 import { iconBrand, iconDiv, iconCup, iconArrowRight } from '../../assets/images';
 
 import AppProvider, { AppContext } from '../AppProvider';
-
-const Container = styled.View`
-  flex: 1;
-  justify-content: space-between;
-  background-color: ${colors.bg};
-`;
 
 const HeaderSection = styled.View`
   padding-vertical: 20px;
@@ -100,7 +103,7 @@ function Home({ navigation }) {
             <Section>
               <StyledButton
                 onPress={() => {
-                  navigation.navigate(STAMPS_SCREEN);
+                  navigation.navigate(ACTIVITY_SCREEN);
                 }}
               >
                 <StyledButtonShadow />
