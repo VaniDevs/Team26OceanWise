@@ -15,7 +15,6 @@ import {
 } from '../styles';
 import {
   iconArrowRight,
-  iconChevronLeft,
   iconDot,
   iconDotActive,
   iconFreeCoffee,
@@ -23,6 +22,7 @@ import {
   logo29thParallel,
   bgCelebrate
 } from '../../assets/images';
+import BackButton from './common/BackButton';
 
 import AppProvider, { AppContext } from '../AppProvider';
 
@@ -30,11 +30,6 @@ const HeaderSection = styled.View`
   position: relative;
   padding-vertical: 10px;
   width: 100%;
-`;
-const BackButton = styled.TouchableOpacity`
-  padding-horizontal: 20px;
-  position: absolute;
-  left: 0;
 `;
 
 const Card = styled.View`
@@ -70,10 +65,12 @@ const StampLabel = styled.Text`
 // @INGA: PLEASE MAKE THIS DYNAMIC
 // the full stamp static page is STAMP_FULL_SCREEN (will direct to REDEEM_SCREEN)
 function Stamps({ navigation }) {
-  console.log('========- HERE ');
+  console.log('========-=======-=======-=======-=======- Stamps ');
   console.log('========- navigation: ', navigation);
 
   const { logo } = navigation.state.params;
+  console.log('========- logo: ', logo);
+
   return (
     <AppProvider>
       <AppContext.Consumer>
@@ -86,11 +83,9 @@ function Stamps({ navigation }) {
                     onPress={() => {
                       navigation.goBack();
                     }}
-                  >
-                    <Image source={iconChevronLeft} />
-                  </BackButton>
+                  />
                 </HeaderSection>
-                <Image source={logo} style={{ marginHorizontal: 10, alignSelf: 'center' }} />
+                <Image source={{ uri: logo }} style={{ marginHorizontal: 10, alignSelf: 'center' }} />
                 <CardDesc>49th Parallel Café &amp; Lucky's Doughnuts - MAIN</CardDesc>
 
                 <StampContainer>

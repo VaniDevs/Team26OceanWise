@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 
+import styled from 'styled-components';
+
 import { STAMPS_SCREEN } from '../constants';
+import { colors, fontFamily } from '../styles';
+
+const HeaderSection = styled.View`
+  padding-vertical: 10px;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+`;
+
+const ScanText = styled.Text`
+  font-family: ${fontFamily.plexMonoBold};
+  color: #fff;
+  font-size: 15px;
+  line-height: 19px;
+  align-self: center;
+`;
 
 class ScanScreen extends Component {
   onSuccess = code => {
@@ -15,15 +32,19 @@ class ScanScreen extends Component {
     });
   };
 
-  renderTopContent = () => (
-    <View>
-      <Text>Scanning...</Text>
-      <Text>Scan the coffee shops QR code to verify</Text>
-    </View>
-  );
-
   render() {
-    return <QRCodeScanner onRead={this.onSuccess} topContent={this.renderTopContent} />;
+    return (
+      <QRCodeScanner
+        onRead={this.onSuccess}
+        topContent={
+          <HeaderSection>
+            <ScanText>SCAN CAFE QR CODE</ScanText>
+          </HeaderSection>
+        }
+        topViewStyle={{ backgroundColor: colors.primary }}
+        bottomViewStyle={{ backgroundColor: colors.primary }}
+      />
+    );
   }
 }
 ScanScreen.propTypes = {

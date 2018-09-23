@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Image, ImageBackground } from 'react-native';
 import { REDEEM_SCREEN } from '../constants';
+import BackButton from './common/BackButton';
 import { fontFamily, colors, Section, StyledButton, ButtonInner, StyledButtonHalo, ButtonTitle } from '../styles';
 import {
   iconArrowRight,
@@ -22,12 +23,6 @@ const HeaderSection = styled.View`
   padding-vertical: 10px;
   width: 100%;
 `;
-const BackButton = styled.TouchableOpacity`
-  padding-horizontal: 20px;
-  position: absolute;
-  left: 0;
-`;
-
 const Card = styled.View`
   padding-vertical: 20px;
   background: white;
@@ -81,16 +76,16 @@ function Stamps({ navigation }) {
               width: '100%',
               height: '100%',
               justifyContent: 'center'
-            }}>
+            }}
+          >
             <Section>
               <Card>
                 <HeaderSection>
                   <BackButton
                     onPress={() => {
                       navigation.goBack();
-                    }}>
-                    <Image source={iconChevronLeft} />
-                  </BackButton>
+                    }}
+                  />
                 </HeaderSection>
                 <Image source={logo29thParallel} style={{ marginHorizontal: 10, alignSelf: 'center' }} />
                 <CardDesc>49th Parallel Café &amp; Lucky's Doughnuts - MAIN</CardDesc>
@@ -115,7 +110,8 @@ function Stamps({ navigation }) {
               <StyledButton
                 onPress={() => {
                   navigation.navigate(REDEEM_SCREEN);
-                }}>
+                }}
+              >
                 <StyledButtonHalo />
                 <ButtonInner>
                   <ButtonTitle>Free Coffee</ButtonTitle>

@@ -22,3 +22,4 @@ export const places = require('./places.png');
 export const placesActive = require('./placesActive.png');
 export const impact = require('./impact.png');
 export const impactActive = require('./impactActive.png');
+export const backArrowWhite = require('./backArrowWhite.png');

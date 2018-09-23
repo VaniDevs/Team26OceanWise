@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Alert, Platform, TextInput, Image, TouchableHighlight } from 'react-native';
+import { Alert, TextInput, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Permissions from 'react-native-permissions';
 
-import { HOME_SCREEN, SCANNER_SCREEN } from '../constants';
+import BackButton from './common/BackButton';
+import { SCANNER_SCREEN } from '../constants';
 import {
   fontFamily,
   colors,
@@ -15,7 +16,7 @@ import {
   StyledButtonShadow,
   ButtonTitle
 } from '../styles';
-import { iconArrowRight, iconChevronLeft } from '../../assets/images';
+import { iconArrowRight } from '../../assets/images';
 
 const PageTitle = styled.Text`
   font-family: ${fontFamily.plexMonoBold};
@@ -23,11 +24,6 @@ const PageTitle = styled.Text`
   color: ${colors.label};
   letter-spacing: 2px;
   text-transform: uppercase;
-`;
-const BackButton = styled.TouchableOpacity`
-  padding-horizontal: 20px;
-  position: absolute;
-  left: 0;
 `;
 
 const HeaderSection = styled.View`
@@ -161,9 +157,7 @@ class Activity extends Component {
                 onPress={() => {
                   navigation.goBack();
                 }}
-              >
-                <Image source={iconChevronLeft} />
-              </BackButton>
+              />
               <PageTitle>Serving Type</PageTitle>
             </HeaderSection>
 
@@ -193,8 +187,7 @@ class Activity extends Component {
               <ListText style={{ width: '40%' }}>Reusable cup or in-store mug</ListText>
               <ListNumber style={{ width: '20%' }}>{Number(this.state.cupQuantity) * 100}</ListNumber>
               <ListNumber style={{ width: '20%', textAlign: 'right' }}>
-                {Number(this.state.cupQuantity) * -10}
-c
+                {`${Number(this.state.cupQuantity) * -10}c`}
               </ListNumber>
             </ListItem>
 
@@ -233,8 +226,7 @@ c
               if (cupQuantity || lidQuantity || togoQuantity) {
                 this.scanQRCode();
               }
-            }}
-          >
+            }}>
             <StyledButtonShadow />
             <ButtonInner>
               <ButtonTitle>SCAN</ButtonTitle>

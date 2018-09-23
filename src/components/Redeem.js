@@ -6,7 +6,6 @@ import { IMPACT_SCREEN } from '../constants';
 import { fontFamily, colors, Section, StyledButton, ButtonInner, StyledButtonHalo, ButtonTitle } from '../styles';
 import {
   iconArrowRight,
-  iconChevronLeft,
   iconDot,
   iconDotActive,
   iconFreeCoffee,
@@ -14,25 +13,15 @@ import {
   logo29thParallel,
   bgCelebrate
 } from '../../assets/images';
+import BackButton from './common/BackButton';
 
 import AppProvider, { AppContext } from '../AppProvider';
 
-const Container = styled.View`
-  flex: 1;
-  justify-content: space-between;
-  background: ;
-`;
 const HeaderSection = styled.View`
   position: relative;
   padding-vertical: 10px;
   width: 100%;
 `;
-const BackButton = styled.TouchableOpacity`
-  padding-horizontal: 20px;
-  position: absolute;
-  left: 0;
-`;
-
 const Card = styled.View`
   padding-vertical: 20px;
   background: white;
@@ -95,9 +84,7 @@ function Redeem({ navigation }) {
                     onPress={() => {
                       navigation.goBack();
                     }}
-                  >
-                    <Image source={iconChevronLeft} />
-                  </BackButton>
+                  />
                 </HeaderSection>
                 <Image source={logo29thParallel} style={{ marginHorizontal: 10, alignSelf: 'center' }} />
                 <CardDesc>49th Parallel Café &amp; Lucky's Doughnuts - MAIN</CardDesc>
