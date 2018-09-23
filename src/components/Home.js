@@ -14,7 +14,7 @@ import {
   ButtonTitle
 } from '../styles';
 import { iconBrand, iconDiv, iconCup, iconArrowRight } from '../../assets/images';
-
+import { isIphoneX } from '../utils';
 import AppProvider, { AppContext } from '../AppProvider';
 
 const HeaderSection = styled.View`
@@ -27,6 +27,7 @@ const HeaderText = styled.Text`
   font-family: ${fontFamily.plexMonoOblique};
   font-size: 24px;
   letter-spacing: 3px;
+  ${isIphoneX && 'margin-top: 30'};
   color: ${colors.primary};
 `;
 
