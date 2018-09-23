@@ -159,8 +159,7 @@ class Activity extends Component {
               <BackButton
                 onPress={() => {
                   navigation.goBack();
-                }}
-              >
+                }}>
                 <Image source={iconChevronLeft} />
               </BackButton>
               <PageTitle>Serving Type</PageTitle>
@@ -188,12 +187,9 @@ class Activity extends Component {
                 onChangeText={cup_qty => this.setState({ cup_qty })}
                 value={this.state.cup_qty}
               />
-              <ListText style={{ width: '40%' }}>Own cup or instore mug</ListText>
+              <ListText style={{ width: '40%' }}>Reusable cup or in-store mug</ListText>
               <ListNumber style={{ width: '20%' }}>{Number(this.state.cup_qty) * 100}</ListNumber>
-              <ListNumber style={{ width: '20%', textAlign: 'right' }}>
-                {Number(this.state.cup_qty) * -10}
-c
-              </ListNumber>
+              <ListNumber style={{ width: '20%', textAlign: 'right' }}>{Number(this.state.cup_qty) * -10}c</ListNumber>
             </ListItem>
 
             <ListItem>

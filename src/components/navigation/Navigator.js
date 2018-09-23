@@ -1,4 +1,6 @@
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import React from 'react';
+import { Image } from 'react-native';
+import { createStackNavigator, createBottomTabNavigator, BottomTabBar } from 'react-navigation';
 
 import Home from '../Home';
 import Places from '../Places';
@@ -19,7 +21,8 @@ import {
   STAMPS_FULL_SCREEN,
   REDEEM_SCREEN
 } from '../../constants';
-import { colors } from '../../styles';
+import { home } from '../../../assets/images';
+import { colors, fontFamily } from '../../styles';
 
 const HomeTab = createStackNavigator({
   [HOME_SCREEN]: {
@@ -72,6 +75,16 @@ const ImpactTab = createStackNavigator({
   }
 });
 
+const getTabBarLabel = routeName => {
+  if (routeName === 'HomeTab') {
+    return 'HOME';
+  }
+  if (routeName === 'PlacesTab') {
+    return 'PLACES';
+  }
+  return 'IMPACT';
+};
+
 const AppTabNavigator = createBottomTabNavigator(
   {
     HomeTab,
@@ -80,11 +93,32 @@ const AppTabNavigator = createBottomTabNavigator(
   },
   {
     tabBarPosition: 'bottom',
+    navigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === 'HomeTab') {
+          iconName = `home${focused ? '' : ''}`;
+        } else if (routeName === 'Settings') {
+          iconName = `ios-options${focused ? '' : '-outline'}`;
+        }
+
+        // You can return any component that you like here! We usually use an
+        // icon component from react-native-vector-icons
+        return <Image source={home} size={23} color={colors.secondary} />;
+      },
+      tabBarLabel: getTabBarLabel(navigation.state.routeName)
+    }),
     tabBarOptions: {
-      activeTintColor: '#000',
+      activeTintColor: colors.secondary,
+      inactiveTintColor: colors.label,
       allowFontScaling: false,
       style: {
+        borderTopColor: 'transparent',
         backgroundColor: colors.bg
+      },
+      labelStyle: {
+        fontFamily: fontFamily.plexMonoBold
       }
     }
   }

@@ -16,3 +16,4 @@ export const iconFreeCoffee = require('./icon-free-coffee.png');
 export const iconFreeCoffeeActive = require('./icon-free-coffee--active.png');
 export const logo29thParallel = require('./logo--29th-parallel.png');
 export const bgCelebrate = require('./bg-celebrate.png');
+export const home = require('./home.png');
