@@ -3,11 +3,18 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import Home from '../Home';
 import Places from '../Places';
 import Impact from '../Impact';
-import { HOME_SCREEN, PLACES_SCREEN, IMPACT_SCREEN, TAB_SCREEN } from '../../constants';
+import Activity from '../Activity';
+import { HOME_SCREEN, PLACES_SCREEN, IMPACT_SCREEN, TAB_SCREEN, ACTIVITY_SCREEN } from '../../constants';
 
 const HomeTab = createStackNavigator({
   [HOME_SCREEN]: {
     screen: Home,
+    navigationOptions: () => ({
+      header: null
+    })
+  },
+  [ACTIVITY_SCREEN]: {
+    screen: Activity,
     navigationOptions: () => ({
       header: null
     })
