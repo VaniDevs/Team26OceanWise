@@ -94,18 +94,13 @@ const AppTabNavigator = createBottomTabNavigator(
   {
     tabBarPosition: 'bottom',
     navigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, tintColor }) => {
+      tabBarIcon: ({ focused }) => {
         const { routeName } = navigation.state;
-        let iconName;
+        let icon;
         if (routeName === 'HomeTab') {
-          iconName = `home${focused ? '' : ''}`;
-        } else if (routeName === 'Settings') {
-          iconName = `ios-options${focused ? '' : '-outline'}`;
+          icon = focused ? home : home;
         }
-
-        // You can return any component that you like here! We usually use an
-        // icon component from react-native-vector-icons
-        return <Image source={home} size={23} color={colors.secondary} />;
+        return <Image source={icon} size={23} color={colors.secondary} />;
       },
       tabBarLabel: getTabBarLabel(navigation.state.routeName)
     }),
