@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { ACTIVITY_SCREEN } from '../constants';
+import { ACTIVITY_SCREEN, fontFamily, colors } from '../constants';
 
 import AppProvider, { AppContext } from '../AppProvider';
 
 const Container = styled.View`
   flex: 1;
   justify-content: center;
-  background-color: #f2ebde;
+  background-color: ${colors.bg};
 `;
 
 const HeaderSection = styled.View`
@@ -19,17 +19,21 @@ const EnviroPoints = styled.View`
   align-items: center;
 `;
 const SubTitle = styled.Text`
-  color: black;
+  color: ${colors.text};
   font-size: 16px;
+  font-family: ${fontFamily.plexMono};
 `;
 const PointNumber = styled.Text`
-  color: #1d1c18;
+  color: ${colors.text};
   font-size: 90px;
-  font-family: 'IBMPlexMono-Bold';
+  font-family: ${fontFamily.plexMonoBold};
 `;
 const PointUnit = styled.Text`
-  color: black;
+  color: ${colors.subText};
   font-size: 20px;
+  font-family: ${fontFamily.plexMonoBold};
+  text-transform: uppercase;
+  letter-spacing: 2px;
 `;
 
 const Section = styled.View`
@@ -40,7 +44,7 @@ const StyledButton = styled.TouchableOpacity`
   position: relative;
 `;
 const ButtonInner = styled.View`
-  background: #142c46;
+  background: ${colors.button};
   padding-vertical: 10px;
   padding-horizontal: 10px;
   border-radius: 5px;
@@ -51,7 +55,7 @@ const ButtonInner = styled.View`
 const StyledButtonShadow = styled.View`
   position: absolute;
   height: 48px;
-  background: #fc954c;
+  background: ${colors.buttonShadow};
   border-radius: 5px;
   z-index: 0;
   width: 100%;
@@ -59,7 +63,7 @@ const StyledButtonShadow = styled.View`
   left: -10px;
 `;
 const ButtonTitle = styled.Text`
-  color: white;
+  color: ${colors.bg};
 `;
 
 function Home({ navigation }) {
@@ -72,7 +76,7 @@ function Home({ navigation }) {
               <SubTitle>Seedling</SubTitle>
               <EnviroPoints>
                 <PointNumber>{context.enviroPoints}</PointNumber>
-                <PointUnit>points</PointUnit>
+                <PointUnit>enviro points</PointUnit>
               </EnviroPoints>
             </HeaderSection>
             <Section>

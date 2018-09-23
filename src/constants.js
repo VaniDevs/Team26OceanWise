@@ -11,10 +11,19 @@ export const STORE_FAV_CAFES = '@OceanWiseStore:FavouriteCafes';
 export const STORE_USER_CUPS_SAVED = '@OceanWiseStore:CupsSaved';
 export const STORE_USER_ENVIRO_POINTS = '@OceanWiseStore:EnviroPoints';
 
-// export const fontFamily = {
-//   universLTPro55Oblique: 'UniversLTPro-55Oblique',
-//   universLTPro55Roman: 'UniversLTPro-55Roman',
-//   universLTPro85XBlackObl: 'UniversLTPro-85XBlackObl',
-//   universLTPro65Bold: 'UniversLTPro-65Bold',
-//   universLTStdBold: 'UniversLTStd-Bold',
-// };
+export const fontFamily = {
+  plexMono: 'IBMPlexMono',
+  plexMonoBold: 'IBMPlexMono-SemiBold',
+  plexMonoOblique: 'IBMPlexMono-BoldItalic',
+  plexSans: 'IBMPlexSans',
+  plexSansBold: 'IBMPlexSans-SemiBold',
+  plexSansOblique: 'IBMPlexSans-BoldItalic'
+};
+
+export const colors = {
+  bg: '#f2ebde',
+  text: '#1d1c18',
+  subText: '#A9A595',
+  button: '#142C46',
+  buttonShadow: '#fc954c'
+};
