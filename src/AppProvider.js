@@ -66,7 +66,8 @@ class AppProvider extends React.Component {
           addEnviroPoints: this.addEnviroPoints,
           incrementCupsSaved: this.incrementCupsSaved,
           addCafe: this.addCafe
-        }}>
+        }}
+      >
         {children}
       </AppContext.Provider>
     );

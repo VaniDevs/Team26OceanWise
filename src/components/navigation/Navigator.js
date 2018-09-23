@@ -4,7 +4,15 @@ import Home from '../Home';
 import Places from '../Places';
 import Impact from '../Impact';
 import Activity from '../Activity';
-import { HOME_SCREEN, PLACES_SCREEN, IMPACT_SCREEN, TAB_SCREEN, ACTIVITY_SCREEN } from '../../constants';
+import Scanner from '../Scanner';
+import {
+  HOME_SCREEN,
+  PLACES_SCREEN,
+  IMPACT_SCREEN,
+  TAB_SCREEN,
+  ACTIVITY_SCREEN,
+  SCANNER_SCREEN
+} from '../../constants';
 
 const HomeTab = createStackNavigator({
   [HOME_SCREEN]: {
@@ -15,6 +23,12 @@ const HomeTab = createStackNavigator({
   },
   [ACTIVITY_SCREEN]: {
     screen: Activity,
+    navigationOptions: () => ({
+      header: null
+    })
+  },
+  [SCANNER_SCREEN]: {
+    screen: Scanner,
     navigationOptions: () => ({
       header: null
     })
