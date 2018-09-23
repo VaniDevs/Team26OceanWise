@@ -96,7 +96,7 @@ function Home({ navigation }) {
 
               <SavingContainer>
                 <Image source={iconCup} style={{ marginHorizontal: 10, marginVertical: 3 }} />
-                <Savings>250 cups saved</Savings>
+                <Savings>{`${context.cupsSaved} cups saved`}</Savings>
               </SavingContainer>
             </BodySection>
 
@@ -104,8 +104,7 @@ function Home({ navigation }) {
               <StyledButton
                 onPress={() => {
                   navigation.navigate(ACTIVITY_SCREEN);
-                }}
-              >
+                }}>
                 <StyledButtonShadow />
                 <ButtonInner>
                   <ButtonTitle>Collect Stamps</ButtonTitle>
