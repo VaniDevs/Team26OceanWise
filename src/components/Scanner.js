@@ -28,7 +28,8 @@ class ScanScreen extends Component {
   onSuccess = (code, context) => {
     const { navigation } = this.props;
     const { enviroPoints, cupsSaved, togoQuantity, lidQuantity } = navigation.state.params;
-    const prevAquiredPoints = context.favoriteCafes.length > 0 ? context.favoriteCafes[0].points : 0;
+    const prevAquiredPoints =
+      context.favoriteCafes && context.favoriteCafes.length > 0 ? context.favoriteCafes[0].points : 0;
 
     context.addEnviroPoints(enviroPoints);
     context.addCupsSaved(cupsSaved);

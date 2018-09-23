@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { YellowBox } from 'react-native';
 
 import Navigation from './components/navigation';
 import { STORE_USER_CUPS_SAVED, STORE_FAV_CAFES, STORE_USER_ENVIRO_POINTS } from './constants';
@@ -19,6 +20,10 @@ class App extends Component {
         }
       })
       .catch(() => console.log('Error initializing storage'));
+  }
+
+  componentWillMount() {
+    YellowBox.ignoreWarnings(['key']);
   }
 
   render() {

@@ -56,13 +56,15 @@ class AppProvider extends React.Component {
 
     // TODO check if coffee house exists and change record
     // Otherwise, push new record
-    if (favoriteCafes.length > 0) {
+    if (favoriteCafes && favoriteCafes.length > 0) {
       favoriteCafes[0] = cafeRecord;
+      this.setState({ favoriteCafes });
+      storeData(STORE_FAV_CAFES, JSON.stringify(favoriteCafes));
     } else {
-      favoriteCafes.push(cafeRecord);
+      const initialFavCafes = [{ cafeRecord }];
+      this.setState({ initialFavCafes });
+      storeData(STORE_FAV_CAFES, JSON.stringify(initialFavCafes));
     }
-    this.setState({ favoriteCafes });
-    storeData(STORE_FAV_CAFES, JSON.stringify(favoriteCafes));
   };
 
   render() {
