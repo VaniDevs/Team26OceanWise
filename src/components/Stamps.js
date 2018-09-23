@@ -21,6 +21,7 @@ import {
   bgCelebrate
 } from '../../assets/images';
 import BackButton from './common/BackButton';
+import { IMPACT_SCREEN } from '../constants';
 
 const HeaderSection = styled.View`
   position: relative;
@@ -58,8 +59,6 @@ const StampLabel = styled.Text`
   font-family: ${fontFamily.plexSansBold};
 `;
 
-// @INGA: PLEASE MAKE THIS DYNAMIC
-// the full stamp static page is STAMP_FULL_SCREEN (will direct to REDEEM_SCREEN)
 function Stamps({ navigation }) {
   const stampIcons = new Array(10).fill();
   const { logo, coffeeAmount, coffeeHouse } = navigation.state.params;
@@ -98,6 +97,7 @@ function Stamps({ navigation }) {
         <StyledButton
           onPress={() => {
             navigation.popToTop();
+            navigation.navigate(IMPACT_SCREEN);
           }}>
           <StyledButtonShadow />
           <ButtonInner>

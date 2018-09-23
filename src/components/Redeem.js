@@ -60,9 +60,8 @@ const Message = styled.Text`
   margin-vertical: 20px;
 `;
 
-function Redeem({ navigation, screenProps }) {
+function Redeem({ navigation }) {
   const resizeMode = 'center';
-  const { context } = screenProps;
   return (
     <ImageBackground
       source={bgCelebrate}
@@ -90,6 +89,7 @@ function Redeem({ navigation, screenProps }) {
 
         <StyledButton
           onPress={() => {
+            navigation.popToTop();
             navigation.navigate(IMPACT_SCREEN);
           }}>
           <StyledButtonHalo />
@@ -103,9 +103,6 @@ function Redeem({ navigation, screenProps }) {
   );
 }
 Redeem.propTypes = {
-  screenProps: PropTypes.shape({
-    context: PropTypes.shape({}).isRequired
-  }).isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired
   }).isRequired

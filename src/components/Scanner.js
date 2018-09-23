@@ -5,7 +5,7 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 import styled from 'styled-components';
 
 import AppProvider, { AppContext } from '../AppProvider';
-import { STAMPS_SCREEN } from '../constants';
+import { STAMPS_SCREEN, STAMPS_FULL_SCREEN } from '../constants';
 import { colors, fontFamily } from '../styles';
 import { logo29thParallel } from '../../assets/images';
 
@@ -39,14 +39,26 @@ class ScanScreen extends Component {
     // and grab coffee house name from the URL
     context.addPointsToCafe("49th Parallel Café &amp; Lucky's Doughnuts - MAIN", logo29thParallel, coffeeAmount);
 
-    navigation.navigate({
-      routeName: STAMPS_SCREEN,
-      params: {
-        logo: logo29thParallel,
-        coffeeAmount,
-        coffeeHouse: "49th Parallel Café &amp; Lucky's Doughnuts - MAIN"
-      }
-    });
+    console.log('coffeeAmount: ', coffeeAmount);
+    if (coffeeAmount < 10) {
+      navigation.navigate({
+        routeName: STAMPS_SCREEN,
+        params: {
+          logo: logo29thParallel,
+          coffeeAmount,
+          coffeeHouse: "49th Parallel Café &amp; Lucky's Doughnuts - MAIN"
+        }
+      });
+    } else {
+      navigation.navigate({
+        routeName: STAMPS_FULL_SCREEN,
+        params: {
+          logo: logo29thParallel,
+          coffeeAmount,
+          coffeeHouse: "49th Parallel Café &amp; Lucky's Doughnuts - MAIN"
+        }
+      });
+    }
   };
 
   render() {

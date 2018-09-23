@@ -52,7 +52,7 @@ class AppProvider extends React.Component {
 
   addPointsToCafe = (cafe, logo, points) => {
     const { favoriteCafes } = this.state;
-    const cafeRecord = { cafe, logo, points };
+    const cafeRecord = points < 10 ? { cafe, logo, points } : { cafe, logo, points: points - 10 };
 
     // TODO check if coffee house exists and change record
     // Otherwise, push new record

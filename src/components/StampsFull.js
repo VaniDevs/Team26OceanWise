@@ -12,7 +12,6 @@ import {
   iconDotActive,
   iconFreeCoffee,
   iconFreeCoffeeActive,
-  logo29thParallel,
   bgCelebrate
 } from '../../assets/images';
 
@@ -60,6 +59,8 @@ const Message = styled.Text`
 `;
 
 function Stamps({ navigation }) {
+  const { logo, coffeeHouse } = navigation.state.params;
+
   const resizeMode = 'center';
   return (
     <ImageBackground
@@ -81,11 +82,11 @@ function Stamps({ navigation }) {
               }}
             />
           </HeaderSection>
-          <Image source={logo29thParallel} style={{ marginHorizontal: 10, alignSelf: 'center' }} />
-          <CardDesc>49th Parallel Café &amp; Lucky's Doughnuts - MAIN</CardDesc>
+          <Image source={logo} style={{ marginHorizontal: 10, alignSelf: 'center' }} />
+          <CardDesc>{coffeeHouse}</CardDesc>
 
           <StampContainer>
-            <StampLabel>1/10</StampLabel>
+            <StampLabel>10/10</StampLabel>
             <StampList>
               <Image source={iconDotActive} />
               <Image source={iconDotActive} />
@@ -117,6 +118,13 @@ function Stamps({ navigation }) {
 }
 Stamps.propTypes = {
   navigation: PropTypes.shape({
+    state: PropTypes.shape({
+      params: PropTypes.shape({
+        coffeeHouse: PropTypes.string.isRequired,
+        logo: PropTypes.number.isRequired,
+        coffeeAmount: PropTypes.number
+      })
+    }),
     navigate: PropTypes.func.isRequired
   }).isRequired
 };
