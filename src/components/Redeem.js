@@ -60,56 +60,52 @@ const Message = styled.Text`
   margin-vertical: 20px;
 `;
 
-function Redeem({ navigation }) {
+function Redeem({ navigation, screenProps }) {
   const resizeMode = 'center';
+  const { context } = screenProps;
   return (
-    <AppProvider>
-      <AppContext.Consumer>
-        {context => (
-          <ImageBackground
-            source={bgCelebrate}
-            style={{
-              flex: 1,
-              resizeMode,
-              position: 'absolute',
-              width: '100%',
-              height: '100%',
-              justifyContent: 'center'
-            }}
-          >
-            <Section>
-              <Card>
-                <HeaderSection>
-                  <BackButton
-                    onPress={() => {
-                      navigation.goBack();
-                    }}
-                  />
-                </HeaderSection>
-                <Image source={logo29thParallel} style={{ marginHorizontal: 10, alignSelf: 'center' }} />
-                <CardDesc>49th Parallel Café &amp; Lucky's Doughnuts - MAIN</CardDesc>
-              </Card>
-              <Message>Hand to the barista to mark as redeemed.</Message>
+    <ImageBackground
+      source={bgCelebrate}
+      style={{
+        flex: 1,
+        resizeMode,
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center'
+      }}>
+      <Section>
+        <Card>
+          <HeaderSection>
+            <BackButton
+              onPress={() => {
+                navigation.goBack();
+              }}
+            />
+          </HeaderSection>
+          <Image source={logo29thParallel} style={{ marginHorizontal: 10, alignSelf: 'center' }} />
+          <CardDesc>49th Parallel Café &amp; Lucky's Doughnuts - MAIN</CardDesc>
+        </Card>
+        <Message>Hand to the barista to mark as redeemed.</Message>
 
-              <StyledButton
-                onPress={() => {
-                  navigation.navigate(IMPACT_SCREEN);
-                }}
-              >
-                <StyledButtonHalo />
-                <ButtonInner>
-                  <ButtonTitle>Redeem</ButtonTitle>
-                  <Image source={iconArrowRight} style={{ marginHorizontal: 10 }} />
-                </ButtonInner>
-              </StyledButton>
-            </Section>
-          </ImageBackground>
-        )}
-      </AppContext.Consumer>
-    </AppProvider>
+        <StyledButton
+          onPress={() => {
+            navigation.navigate(IMPACT_SCREEN);
+          }}>
+          <StyledButtonHalo />
+          <ButtonInner>
+            <ButtonTitle>Redeem</ButtonTitle>
+            <Image source={iconArrowRight} style={{ marginHorizontal: 10 }} />
+          </ButtonInner>
+        </StyledButton>
+      </Section>
+    </ImageBackground>
   );
 }
 Redeem.propTypes = {
+  screenProps: PropTypes.shape({
+    context: PropTypes.shape({}).isRequired
+  }).isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired
   }).isRequired

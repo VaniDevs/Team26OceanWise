@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Image } from 'react-native';
+
 import { fontFamily, colors, Container, Section } from '../styles';
 import { iconBrand, iconBrandSeal } from '../../assets/images';
 
@@ -58,7 +60,8 @@ const ListUnit = styled.Text`
   text-transform: uppercase;
 `;
 
-function Impact() {
+function Impact({ screenProps }) {
+  const { context } = screenProps;
   return (
     <Container>
       <Section>
@@ -72,7 +75,7 @@ function Impact() {
 
         <ListItem>
           <ListCell>
-            <ListNumber>250</ListNumber>
+            <ListNumber>{context.cupsSaved}</ListNumber>
             <ListUnit>cups saved</ListUnit>
           </ListCell>
           <ListCell>
@@ -106,5 +109,11 @@ function Impact() {
     </Container>
   );
 }
+
+Impact.propTypes = {
+  screenProps: PropTypes.shape({
+    context: PropTypes.shape({}).isRequired
+  }).isRequired
+};
 
 export default Impact;

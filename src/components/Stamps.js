@@ -24,8 +24,6 @@ import {
 } from '../../assets/images';
 import BackButton from './common/BackButton';
 
-import AppProvider, { AppContext } from '../AppProvider';
-
 const HeaderSection = styled.View`
   position: relative;
   padding-vertical: 10px;
@@ -64,72 +62,67 @@ const StampLabel = styled.Text`
 
 // @INGA: PLEASE MAKE THIS DYNAMIC
 // the full stamp static page is STAMP_FULL_SCREEN (will direct to REDEEM_SCREEN)
-function Stamps({ navigation }) {
-  console.log('========-=======-=======-=======-=======- Stamps ');
-  console.log('========- navigation: ', navigation);
-
+function Stamps({ navigation, screenProps }) {
+  const { context } = screenProps;
   const { logo } = navigation.state.params;
-  console.log('========- logo: ', logo);
+  console.log('navigation.state.params: ', navigation.state.params);
 
   return (
-    <AppProvider>
-      <AppContext.Consumer>
-        {context => (
-          <Container>
-            <Section>
-              <Card>
-                <HeaderSection>
-                  <BackButton
-                    onPress={() => {
-                      navigation.goBack();
-                    }}
-                  />
-                </HeaderSection>
-                <Image source={{ uri: logo }} style={{ marginHorizontal: 10, alignSelf: 'center' }} />
-                <CardDesc>49th Parallel Café &amp; Lucky's Doughnuts - MAIN</CardDesc>
+    <Container>
+      <Section>
+        <Card>
+          <HeaderSection>
+            <BackButton
+              onPress={() => {
+                navigation.goBack();
+              }}
+            />
+          </HeaderSection>
+          <Image source={logo29thParallel} style={{ marginHorizontal: 10, alignSelf: 'center' }} />
+          <CardDesc>49th Parallel Café &amp; Lucky's Doughnuts - MAIN</CardDesc>
+          <StampContainer>
+            <StampLabel>1/10</StampLabel>
+            <StampList>
+              <Image source={iconDotActive} />
+              <Image source={iconDot} />
+              <Image source={iconDot} />
+              <Image source={iconDot} />
+              <Image source={iconDot} />
+              <Image source={iconDot} />
+              <Image source={iconDot} />
+              <Image source={iconDot} />
+              <Image source={iconDot} />
+              <Image source={iconFreeCoffee} />
+            </StampList>
+          </StampContainer>
+        </Card>
+      </Section>
 
-                <StampContainer>
-                  <StampLabel>1/10</StampLabel>
-                  <StampList>
-                    <Image source={iconDotActive} />
-                    <Image source={iconDot} />
-                    <Image source={iconDot} />
-                    <Image source={iconDot} />
-                    <Image source={iconDot} />
-                    <Image source={iconDot} />
-                    <Image source={iconDot} />
-                    <Image source={iconDot} />
-                    <Image source={iconDot} />
-                    <Image source={iconFreeCoffee} />
-                  </StampList>
-                </StampContainer>
-              </Card>
-            </Section>
-
-            <Section>
-              <StyledButton
-                onPress={() => {
-                  navigation.navigate(HOME_SCREEN);
-                }}
-              >
-                <StyledButtonShadow />
-                <ButtonInner>
-                  <ButtonTitle>Finish</ButtonTitle>
-                  <Image source={iconArrowRight} style={{ marginHorizontal: 10 }} />
-                </ButtonInner>
-              </StyledButton>
-            </Section>
-          </Container>
-        )}
-      </AppContext.Consumer>
-    </AppProvider>
+      <Section>
+        <StyledButton
+          onPress={() => {
+            navigation.popToTop();
+          }}>
+          <StyledButtonShadow />
+          <ButtonInner>
+            <ButtonTitle>Finish</ButtonTitle>
+            <Image source={iconArrowRight} style={{ marginHorizontal: 10 }} />
+          </ButtonInner>
+        </StyledButton>
+      </Section>
+    </Container>
   );
 }
 Stamps.propTypes = {
+  screenProps: PropTypes.shape({
+    context: PropTypes.shape({}).isRequired
+  }).isRequired,
   navigation: PropTypes.shape({
     state: PropTypes.shape({
       params: PropTypes.shape({
-        logo: PropTypes.string.isRequired
+        logo: PropTypes.string.isRequired,
+        enviroPoints: PropTypes.number,
+        cupsSaved: PropTypes.number
       })
     }),
     navigate: PropTypes.func.isRequired

@@ -113,9 +113,9 @@ class Activity extends Component {
 
   requestPermission = () => {
     const { navigation } = this.props;
+    const { cupQuantity, lidQuantity, togoQuantity } = this.state;
     Permissions.request('camera')
       .then(response => {
-        console.log('response');
         if (response !== 'authorized') {
           const buttons = [{ text: 'Cancel', style: 'cancel' }];
           if (Permissions.canOpenSettings())
@@ -129,17 +129,45 @@ class Activity extends Component {
             buttons
           );
         } else {
-          navigation.navigate(SCANNER_SCREEN);
+          this.navigateToScanner();
         }
       })
       .catch(e => console.warn(e));
   };
 
-  scanQRCode = () => {
+  calculateEnviroPoints = () => {
+    const { cupQuantity, lidQuantity } = this.state;
+
+    if (cupQuantity) {
+      return cupQuantity * 100;
+    }
+    if (lidQuantity) {
+      return lidQuantity * 25;
+    }
+    return 0;
+  };
+
+  navigateToScanner = () => {
     const { navigation } = this.props;
+    const { cupQuantity, togoQuantity } = this.state;
+
+    const cupsSaved = cupQuantity ? Number(cupQuantity) : 0;
+
+    const enviroPoints = this.calculateEnviroPoints();
+    navigation.navigate({
+      routeName: SCANNER_SCREEN,
+      params: {
+        enviroPoints,
+        cupsSaved,
+        togoQuantity
+      }
+    });
+  };
+
+  scanQRCode = () => {
     Permissions.check('camera').then(response => {
       if (response === 'authorized') {
-        navigation.navigate(SCANNER_SCREEN);
+        this.navigateToScanner();
       } else {
         this.alertUserOfAccessRequirement(response);
       }

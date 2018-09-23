@@ -4,6 +4,7 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 
 import styled from 'styled-components';
 
+import AppProvider, { AppContext } from '../AppProvider';
 import { STAMPS_SCREEN } from '../constants';
 import { colors, fontFamily } from '../styles';
 
@@ -23,19 +24,36 @@ const ScanText = styled.Text`
 `;
 
 class ScanScreen extends Component {
-  onSuccess = code => {
+  onSuccess = (code, context) => {
     const { navigation } = this.props;
-    console.log('Scanned: ', code);
+    const { enviroPoints, cupsSaved, togoQuantity } = navigation.state.params;
+
+    // CHECK IF COFFEE HOUSE EXISTS
+    console.log('inga');
+    console.log('code: ', code);
+    console.log('context: ', context);
+
+    context.addEnviroPoints(enviroPoints);
+    context.addCupsSaved(cupsSaved);
+
+    //context.addCafe((points: togoQuantity));
+
     navigation.navigate({
       routeName: STAMPS_SCREEN,
-      params: { logo: code.data }
+      params: {
+        logo: code.data,
+        enviroPoints,
+        cupsSaved
+      }
     });
   };
 
   render() {
+    const { screenProps } = this.props;
+    const { context } = screenProps;
     return (
       <QRCodeScanner
-        onRead={this.onSuccess}
+        onRead={code => this.onSuccess(code, context)}
         topContent={
           <HeaderSection>
             <ScanText>SCAN CAFE QR CODE</ScanText>
@@ -47,8 +65,19 @@ class ScanScreen extends Component {
     );
   }
 }
+
 ScanScreen.propTypes = {
+  screenProps: PropTypes.shape({
+    context: PropTypes.shape({}).isRequired
+  }).isRequired,
   navigation: PropTypes.shape({
+    state: PropTypes.shape({
+      params: PropTypes.shape({
+        cupsSaved: PropTypes.number,
+        lidQuantity: PropTypes.string,
+        togoQuantity: PropTypes.string
+      })
+    }),
     navigate: PropTypes.func.isRequired
   }).isRequired
 };

@@ -38,20 +38,21 @@ class AppProvider extends React.Component {
   addEnviroPoints = additionalPoints => {
     const { enviroPoints } = this.state;
     const updatedEnviroPoints = enviroPoints + additionalPoints;
+    console.log('setting enviropoints to: ', updatedEnviroPoints);
     this.setState({ enviroPoints: updatedEnviroPoints });
     storeData(STORE_USER_ENVIRO_POINTS, updatedEnviroPoints.toString());
   };
 
-  incrementCupsSaved = () => {
+  addCupsSaved = cups => {
     const { cupsSaved } = this.state;
-    const updatedCupsSaved = cupsSaved + 1;
+    const updatedCupsSaved = cupsSaved + cups;
     this.setState({ cupsSaved: updatedCupsSaved });
     storeData(STORE_USER_CUPS_SAVED, updatedCupsSaved.toString());
   };
 
-  addCafe = cafe => {
+  addCafe = (cafe, logo) => {
     const { favoriteCafes } = this.state;
-    const cafeRecord = { cafe, points: 0 };
+    const cafeRecord = { cafe, logo, points: 0 };
     favoriteCafes.push(cafeRecord);
     this.setState({ favoriteCafes });
     storeData(STORE_FAV_CAFES, JSON.stringify(favoriteCafes));
@@ -64,10 +65,9 @@ class AppProvider extends React.Component {
         value={{
           ...this.state,
           addEnviroPoints: this.addEnviroPoints,
-          incrementCupsSaved: this.incrementCupsSaved,
+          addCupsSaved: this.addCupsSaved,
           addCafe: this.addCafe
-        }}
-      >
+        }}>
         {children}
       </AppContext.Provider>
     );

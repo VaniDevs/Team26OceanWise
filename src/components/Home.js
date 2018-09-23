@@ -75,52 +75,47 @@ const Savings = styled.Text`
   letter-spacing: 4px;
 `;
 
-function Home({ navigation }) {
+function Home({ navigation, screenProps }) {
+  const { context } = screenProps;
   return (
-    <AppProvider>
-      <AppContext.Consumer>
-        {context => (
-          <Container>
-            <HeaderSection>
-              <HeaderText>coffeewise</HeaderText>
-            </HeaderSection>
+    <Container>
+      <HeaderSection>
+        <HeaderText>kafewise</HeaderText>
+      </HeaderSection>
+      <BodySection>
+        <Image source={iconBrand} />
+        <BrandTitle>Seahorse</BrandTitle>
+        <SubTitle>Achivement</SubTitle>
+        <EnviroPoints>
+          <PointNumber>{context.enviroPoints}</PointNumber>
+          <PointUnit>enviro points</PointUnit>
+        </EnviroPoints>
+        <Image source={iconDiv} style={{ marginVertical: 20 }} />
+        <SavingContainer>
+          <Image source={iconCup} style={{ marginHorizontal: 10, marginVertical: 3 }} />
+          <Savings>{`${context.cupsSaved} cups saved`}</Savings>
+        </SavingContainer>
+      </BodySection>
 
-            <BodySection>
-              <Image source={iconBrand} />
-              <BrandTitle>Seahorse</BrandTitle>
-              <SubTitle>Achivement</SubTitle>
-              <EnviroPoints>
-                <PointNumber>{context.enviroPoints}</PointNumber>
-                <PointUnit>enviro points</PointUnit>
-              </EnviroPoints>
-              <Image source={iconDiv} style={{ marginVertical: 20 }} />
-
-              <SavingContainer>
-                <Image source={iconCup} style={{ marginHorizontal: 10, marginVertical: 3 }} />
-                <Savings>{`${context.cupsSaved} cups saved`}</Savings>
-              </SavingContainer>
-            </BodySection>
-
-            <Section>
-              <StyledButton
-                onPress={() => {
-                  navigation.navigate(ACTIVITY_SCREEN);
-                }}
-              >
-                <StyledButtonShadow />
-                <ButtonInner>
-                  <ButtonTitle>Collect Stamps</ButtonTitle>
-                  <Image source={iconArrowRight} style={{ marginHorizontal: 10 }} />
-                </ButtonInner>
-              </StyledButton>
-            </Section>
-          </Container>
-        )}
-      </AppContext.Consumer>
-    </AppProvider>
+      <Section>
+        <StyledButton
+          onPress={() => {
+            navigation.navigate(ACTIVITY_SCREEN);
+          }}>
+          <StyledButtonShadow />
+          <ButtonInner>
+            <ButtonTitle>Collect Stamps</ButtonTitle>
+            <Image source={iconArrowRight} style={{ marginHorizontal: 10 }} />
+          </ButtonInner>
+        </StyledButton>
+      </Section>
+    </Container>
   );
 }
 Home.propTypes = {
+  screenProps: PropTypes.shape({
+    context: PropTypes.shape({}).isRequired
+  }).isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired
   }).isRequired

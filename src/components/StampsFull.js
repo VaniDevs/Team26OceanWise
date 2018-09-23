@@ -16,8 +16,6 @@ import {
   bgCelebrate
 } from '../../assets/images';
 
-import AppProvider, { AppContext } from '../AppProvider';
-
 const HeaderSection = styled.View`
   position: relative;
   padding-vertical: 10px;
@@ -64,65 +62,57 @@ const Message = styled.Text`
 function Stamps({ navigation }) {
   const resizeMode = 'center';
   return (
-    <AppProvider>
-      <AppContext.Consumer>
-        {context => (
-          <ImageBackground
-            source={bgCelebrate}
-            style={{
-              flex: 1,
-              resizeMode,
-              position: 'absolute',
-              width: '100%',
-              height: '100%',
-              justifyContent: 'center'
-            }}
-          >
-            <Section>
-              <Card>
-                <HeaderSection>
-                  <BackButton
-                    onPress={() => {
-                      navigation.goBack();
-                    }}
-                  />
-                </HeaderSection>
-                <Image source={logo29thParallel} style={{ marginHorizontal: 10, alignSelf: 'center' }} />
-                <CardDesc>49th Parallel Café &amp; Lucky's Doughnuts - MAIN</CardDesc>
+    <ImageBackground
+      source={bgCelebrate}
+      style={{
+        flex: 1,
+        resizeMode,
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center'
+      }}>
+      <Section>
+        <Card>
+          <HeaderSection>
+            <BackButton
+              onPress={() => {
+                navigation.goBack();
+              }}
+            />
+          </HeaderSection>
+          <Image source={logo29thParallel} style={{ marginHorizontal: 10, alignSelf: 'center' }} />
+          <CardDesc>49th Parallel Café &amp; Lucky's Doughnuts - MAIN</CardDesc>
 
-                <StampContainer>
-                  <StampLabel>1/10</StampLabel>
-                  <StampList>
-                    <Image source={iconDotActive} />
-                    <Image source={iconDotActive} />
-                    <Image source={iconDotActive} />
-                    <Image source={iconDotActive} />
-                    <Image source={iconDotActive} />
-                    <Image source={iconDotActive} />
-                    <Image source={iconDotActive} />
-                    <Image source={iconDotActive} />
-                    <Image source={iconDotActive} />
-                    <Image source={iconFreeCoffeeActive} />
-                  </StampList>
-                </StampContainer>
-              </Card>
-              <Message>Woohooo! You have earned a free coffee in your cup or instore!</Message>
-              <StyledButton
-                onPress={() => {
-                  navigation.navigate(REDEEM_SCREEN);
-                }}
-              >
-                <StyledButtonHalo />
-                <ButtonInner>
-                  <ButtonTitle>Free Coffee</ButtonTitle>
-                  <Image source={iconArrowRight} style={{ marginHorizontal: 10 }} />
-                </ButtonInner>
-              </StyledButton>
-            </Section>
-          </ImageBackground>
-        )}
-      </AppContext.Consumer>
-    </AppProvider>
+          <StampContainer>
+            <StampLabel>1/10</StampLabel>
+            <StampList>
+              <Image source={iconDotActive} />
+              <Image source={iconDotActive} />
+              <Image source={iconDotActive} />
+              <Image source={iconDotActive} />
+              <Image source={iconDotActive} />
+              <Image source={iconDotActive} />
+              <Image source={iconDotActive} />
+              <Image source={iconDotActive} />
+              <Image source={iconDotActive} />
+              <Image source={iconFreeCoffeeActive} />
+            </StampList>
+          </StampContainer>
+        </Card>
+        <Message>Woohooo! You have earned a free coffee in your cup or instore!</Message>
+        <StyledButton
+          onPress={() => {
+            navigation.navigate(REDEEM_SCREEN);
+          }}>
+          <StyledButtonHalo />
+          <ButtonInner>
+            <ButtonTitle>Free Coffee</ButtonTitle>
+            <Image source={iconArrowRight} style={{ marginHorizontal: 10 }} />
+          </ButtonInner>
+        </StyledButton>
+      </Section>
+    </ImageBackground>
   );
 }
 Stamps.propTypes = {
