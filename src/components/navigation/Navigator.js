@@ -21,7 +21,7 @@ import {
   STAMPS_FULL_SCREEN,
   REDEEM_SCREEN
 } from '../../constants';
-import { home } from '../../../assets/images';
+import { home, homeActive, places, placesActive, impact, impactActive } from '../../../assets/images';
 import { colors, fontFamily } from '../../styles';
 
 const HomeTab = createStackNavigator({
@@ -98,7 +98,11 @@ const AppTabNavigator = createBottomTabNavigator(
         const { routeName } = navigation.state;
         let icon;
         if (routeName === 'HomeTab') {
-          icon = focused ? home : home;
+          icon = focused ? homeActive : home;
+        } else if (routeName === 'PlacesTab') {
+          icon = focused ? placesActive : places;
+        } else {
+          icon = focused ? impactActive : impact;
         }
         return <Image source={icon} size={23} color={colors.secondary} />;
       },
