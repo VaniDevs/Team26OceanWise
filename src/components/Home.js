@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { ACTIVITY_SCREEN } from '../constants';
 
+import AppProvider, { AppContext } from '../AppProvider';
+
 const Container = styled.View`
   flex: 1;
   justify-content: center;
@@ -45,24 +47,30 @@ const ButtonTitle = styled.Text`
 
 function Home({ navigation }) {
   return (
-    <Container>
-      <HeaderSection>
-        <SubTitle>Seedling</SubTitle>
-        <EnviroPoints>
-          <PointNumber>0</PointNumber>
-          <PointUnit>points</PointUnit>
-        </EnviroPoints>
-      </HeaderSection>
-      <Section>
-        <StyledButton
-          onPress={() => {
-            navigation.navigate(ACTIVITY_SCREEN);
-          }}
-        >
-          <ButtonTitle>Collect Coffee</ButtonTitle>
-        </StyledButton>
-      </Section>
-    </Container>
+    <AppProvider>
+      <AppContext.Consumer>
+        {context => (
+          <Container>
+            <HeaderSection>
+              <SubTitle>Seedling</SubTitle>
+              <EnviroPoints>
+                <PointNumber>{context.enviroPoints}</PointNumber>
+                <PointUnit>points</PointUnit>
+              </EnviroPoints>
+            </HeaderSection>
+            <Section>
+              <StyledButton
+                onPress={() => {
+                  navigation.navigate(ACTIVITY_SCREEN);
+                }}
+              >
+                <ButtonTitle>Collect Coffee</ButtonTitle>
+              </StyledButton>
+            </Section>
+          </Container>
+        )}
+      </AppContext.Consumer>
+    </AppProvider>
   );
 }
 Home.propTypes = {
