@@ -94,9 +94,9 @@ const textInputStyle = {
 
 class Activity extends Component {
   state = {
-    cup_qty: null,
-    lid_qty: null,
-    togo_qty: null
+    cupQuantity: null,
+    lidQuantity: null,
+    togoQuantity: null
   };
 
   // iOS only
@@ -160,7 +160,8 @@ class Activity extends Component {
               <BackButton
                 onPress={() => {
                   navigation.goBack();
-                }}>
+                }}
+              >
                 <Image source={iconChevronLeft} />
               </BackButton>
               <PageTitle>Serving Type</PageTitle>
@@ -184,36 +185,39 @@ class Activity extends Component {
             <ListItem>
               <TextInput
                 style={textInputStyle}
-                keyboardType="number-pad"
+                keyboardType="numeric"
                 returnKeyType="done"
-                onChangeText={cup_qty => this.setState({ cup_qty })}
-                value={this.state.cup_qty}
+                onChangeText={cupQuantity => this.setState({ cupQuantity })}
+                value={this.state.cupQuantity}
               />
               <ListText style={{ width: '40%' }}>Reusable cup or in-store mug</ListText>
-              <ListNumber style={{ width: '20%' }}>{Number(this.state.cup_qty) * 100}</ListNumber>
-              <ListNumber style={{ width: '20%', textAlign: 'right' }}>{Number(this.state.cup_qty) * -10}c</ListNumber>
+              <ListNumber style={{ width: '20%' }}>{Number(this.state.cupQuantity) * 100}</ListNumber>
+              <ListNumber style={{ width: '20%', textAlign: 'right' }}>
+                {Number(this.state.cupQuantity) * -10}
+c
+              </ListNumber>
             </ListItem>
 
             <ListItem>
               <TextInput
                 style={textInputStyle}
-                keyboardType="number-pad"
+                keyboardType="numeric"
                 returnKeyType="done"
-                onChangeText={lid_qty => this.setState({ lid_qty })}
-                value={this.state.lid_qty}
+                onChangeText={lidQuantity => this.setState({ lidQuantity })}
+                value={this.state.lidQuantity}
               />
               <ListText style={{ width: '40%' }}>No lid</ListText>
-              <ListNumber style={{ width: '20%' }}>{Number(this.state.lid_qty) * 25}</ListNumber>
+              <ListNumber style={{ width: '20%' }}>{Number(this.state.lidQuantity) * 25}</ListNumber>
               <ListNumber style={{ width: '20%', textAlign: 'right' }}>0c</ListNumber>
             </ListItem>
 
             <ListItem>
               <TextInput
                 style={textInputStyle}
-                keyboardType="number-pad"
+                keyboardType="numeric"
                 returnKeyType="done"
-                onChangeText={togo_qty => this.setState({ togo_qty })}
-                value={this.state.togo_qty}
+                onChangeText={togoQuantity => this.setState({ togoQuantity })}
+                value={this.state.togoQuantity}
               />
               <ListText style={{ width: '40%' }}>To go cup</ListText>
               <ListNumber style={{ width: '20%' }}>0</ListNumber>
@@ -223,7 +227,14 @@ class Activity extends Component {
         </Section>
 
         <Section>
-          <StyledButton onPress={() => this.scanQRCode()}>
+          <StyledButton
+            onPress={() => {
+              const { cupQuantity, lidQuantity, togoQuantity } = this.state;
+              if (cupQuantity || lidQuantity || togoQuantity) {
+                this.scanQRCode();
+              }
+            }}
+          >
             <StyledButtonShadow />
             <ButtonInner>
               <ButtonTitle>SCAN</ButtonTitle>

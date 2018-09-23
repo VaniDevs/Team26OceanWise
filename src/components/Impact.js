@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { AppRegistry, Image } from 'react-native';
+import { Image } from 'react-native';
 import { fontFamily, colors, Container, Section } from '../styles';
 import { iconBrand, iconBrandSeal } from '../../assets/images';
 

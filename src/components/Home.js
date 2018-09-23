@@ -105,7 +105,8 @@ function Home({ navigation }) {
               <StyledButton
                 onPress={() => {
                   navigation.navigate(ACTIVITY_SCREEN);
-                }}>
+                }}
+              >
                 <StyledButtonShadow />
                 <ButtonInner>
                   <ButtonTitle>Collect Stamps</ButtonTitle>

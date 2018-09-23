@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator, BottomTabBar } from 'react-navigation';
+import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import Home from '../Home';
 import Places from '../Places';
@@ -39,6 +39,12 @@ const HomeTab = createStackNavigator({
   },
   [SCANNER_SCREEN]: {
     screen: Scanner,
+    navigationOptions: () => ({
+      header: null
+    })
+  },
+  [STAMPS_SCREEN]: {
+    screen: Stamps,
     navigationOptions: () => ({
       header: null
     })

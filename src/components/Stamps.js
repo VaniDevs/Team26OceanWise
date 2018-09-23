@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Image } from 'react-native';
-import { ACTIVITY_SCREEN } from '../constants';
+import { HOME_SCREEN } from '../constants';
 import {
   fontFamily,
   colors,
@@ -70,6 +70,10 @@ const StampLabel = styled.Text`
 // @INGA: PLEASE MAKE THIS DYNAMIC
 // the full stamp static page is STAMP_FULL_SCREEN (will direct to REDEEM_SCREEN)
 function Stamps({ navigation }) {
+  console.log('========- HERE ');
+  console.log('========- navigation: ', navigation);
+
+  const { logo } = navigation.state.params;
   return (
     <AppProvider>
       <AppContext.Consumer>
@@ -86,7 +90,7 @@ function Stamps({ navigation }) {
                     <Image source={iconChevronLeft} />
                   </BackButton>
                 </HeaderSection>
-                <Image source={logo29thParallel} style={{ marginHorizontal: 10, alignSelf: 'center' }} />
+                <Image source={logo} style={{ marginHorizontal: 10, alignSelf: 'center' }} />
                 <CardDesc>49th Parallel Café &amp; Lucky's Doughnuts - MAIN</CardDesc>
 
                 <StampContainer>
@@ -110,7 +114,7 @@ function Stamps({ navigation }) {
             <Section>
               <StyledButton
                 onPress={() => {
-                  navigation.navigate(ACTIVITY_SCREEN);
+                  navigation.navigate(HOME_SCREEN);
                 }}
               >
                 <StyledButtonShadow />
@@ -128,6 +132,11 @@ function Stamps({ navigation }) {
 }
 Stamps.propTypes = {
   navigation: PropTypes.shape({
+    state: PropTypes.shape({
+      params: PropTypes.shape({
+        logo: PropTypes.string.isRequired
+      })
+    }),
     navigate: PropTypes.func.isRequired
   }).isRequired
 };

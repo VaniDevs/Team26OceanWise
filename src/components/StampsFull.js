@@ -17,11 +17,6 @@ import {
 
 import AppProvider, { AppContext } from '../AppProvider';
 
-const Container = styled.View`
-  flex: 1;
-  justify-content: space-between;
-  background: ;
-`;
 const HeaderSection = styled.View`
   position: relative;
   padding-vertical: 10px;
@@ -86,16 +81,14 @@ function Stamps({ navigation }) {
               width: '100%',
               height: '100%',
               justifyContent: 'center'
-            }}
-          >
+            }}>
             <Section>
               <Card>
                 <HeaderSection>
                   <BackButton
                     onPress={() => {
                       navigation.goBack();
-                    }}
-                  >
+                    }}>
                     <Image source={iconChevronLeft} />
                   </BackButton>
                 </HeaderSection>
@@ -122,8 +115,7 @@ function Stamps({ navigation }) {
               <StyledButton
                 onPress={() => {
                   navigation.navigate(REDEEM_SCREEN);
-                }}
-              >
+                }}>
                 <StyledButtonHalo />
                 <ButtonInner>
                   <ButtonTitle>Free Coffee</ButtonTitle>
