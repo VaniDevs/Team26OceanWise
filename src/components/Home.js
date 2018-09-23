@@ -82,7 +82,7 @@ function Home({ navigation }) {
         {context => (
           <Container>
             <HeaderSection>
-              <HeaderText>kafeewise</HeaderText>
+              <HeaderText>coffeewise</HeaderText>
             </HeaderSection>
 
             <BodySection>
