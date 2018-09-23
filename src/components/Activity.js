@@ -112,8 +112,6 @@ class Activity extends Component {
   };
 
   requestPermission = () => {
-    const { navigation } = this.props;
-    const { cupQuantity, lidQuantity, togoQuantity } = this.state;
     Permissions.request('camera')
       .then(response => {
         if (response !== 'authorized') {
@@ -151,7 +149,7 @@ class Activity extends Component {
 
   navigateToScanner = () => {
     const { navigation } = this.props;
-    const { cupQuantity, togoQuantity } = this.state;
+    const { cupQuantity, togoQuantity, lidQuantity } = this.state;
 
     const cupsSaved = cupQuantity ? Number(cupQuantity) : 0;
 
@@ -161,7 +159,8 @@ class Activity extends Component {
       params: {
         enviroPoints,
         cupsSaved,
-        togoQuantity
+        togoQuantity,
+        lidQuantity
       }
     });
   };
