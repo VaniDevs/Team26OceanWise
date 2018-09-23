@@ -6,6 +6,7 @@ export const fontFamily = {
   plexMonoBold: 'IBMPlexMono-SemiBold',
   plexMonoOblique: 'IBMPlexMono-BoldItalic',
   plexSans: 'IBMPlexSans',
+  plexSansMedium: 'IBMPlexSans-Medium',
   plexSansBold: 'IBMPlexSans-SemiBold',
   plexSansOblique: 'IBMPlexSans-BoldItalic'
 };

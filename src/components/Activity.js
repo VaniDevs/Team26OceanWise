@@ -60,7 +60,7 @@ const ListLabel = styled.Text`
   font-family: ${fontFamily.plexMono};
   text-transform: uppercase;
 `;
-const ListItem = styled.View`
+const ListItem = styled.KeyboardAvoidingView`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -70,11 +70,12 @@ const ListItem = styled.View`
 const ListText = styled.Text`
   color: ${colors.label};
   font-size: 16px;
-  font-family: ${fontFamily.plexSansBold};
+  font-family: ${fontFamily.plexSansMedium};
   margin-horizontal: 10px;
 `;
 const ListNumber = styled.Text`
   color: ${colors.secondary};
+  font-family: ${fontFamily.plexSansBold};
   text-align: center;
   font-size: 20px;
 `;
@@ -184,6 +185,7 @@ class Activity extends Component {
               <TextInput
                 style={textInputStyle}
                 keyboardType="number-pad"
+                returnKeyType="done"
                 onChangeText={cup_qty => this.setState({ cup_qty })}
                 value={this.state.cup_qty}
               />
@@ -196,6 +198,7 @@ class Activity extends Component {
               <TextInput
                 style={textInputStyle}
                 keyboardType="number-pad"
+                returnKeyType="done"
                 onChangeText={lid_qty => this.setState({ lid_qty })}
                 value={this.state.lid_qty}
               />
@@ -208,6 +211,7 @@ class Activity extends Component {
               <TextInput
                 style={textInputStyle}
                 keyboardType="number-pad"
+                returnKeyType="done"
                 onChangeText={togo_qty => this.setState({ togo_qty })}
                 value={this.state.togo_qty}
               />
