@@ -11,3 +11,6 @@ export const iconImpact = require('./icon-impact.png');
 export const iconImpactActive = require('./icon-impact--active.png');
 export const iconPlaces = require('./icon-places.png');
 export const iconPlacesActive = require('./icon-places--active.png');
+export const iconFreeCoffee = require('./icon-free-coffee.png');
+export const iconFreeCoffeeActive = require('./icon-free-coffee--active.png');
+export const logo29thParallel = require('./logo--29th-parallel.png');

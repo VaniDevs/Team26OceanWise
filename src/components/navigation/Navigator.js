@@ -5,13 +5,15 @@ import Places from '../Places';
 import Impact from '../Impact';
 import Activity from '../Activity';
 import Scanner from '../Scanner';
+import Stamps from '../Stamps';
 import {
   HOME_SCREEN,
   PLACES_SCREEN,
   IMPACT_SCREEN,
   TAB_SCREEN,
   ACTIVITY_SCREEN,
-  SCANNER_SCREEN
+  SCANNER_SCREEN,
+  STAMPS_SCREEN
 } from '../../constants';
 import { colors } from '../../styles';
 
@@ -30,6 +32,12 @@ const HomeTab = createStackNavigator({
   },
   [SCANNER_SCREEN]: {
     screen: Scanner,
+    navigationOptions: () => ({
+      header: null
+    })
+  },
+  [STAMPS_SCREEN]: {
+    screen: Stamps,
     navigationOptions: () => ({
       header: null
     })

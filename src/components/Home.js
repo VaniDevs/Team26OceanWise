@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Image } from 'react-native';
-import { ACTIVITY_SCREEN } from '../constants';
+import { ACTIVITY_SCREEN, STAMPS_SCREEN } from '../constants';
 import { fontFamily, colors, Section, StyledButton, ButtonInner, StyledButtonShadow, ButtonTitle } from '../styles';
 import { iconBrand, iconDiv, iconCup, iconArrowRight } from '../../assets/images';
 
@@ -100,7 +100,7 @@ function Home({ navigation }) {
             <Section>
               <StyledButton
                 onPress={() => {
-                  navigation.navigate(ACTIVITY_SCREEN);
+                  navigation.navigate(STAMPS_SCREEN);
                 }}
               >
                 <StyledButtonShadow />

@@ -35,7 +35,7 @@ const HeaderSection = styled.View`
   justify-content: center;
 `;
 
-const ListGroup = styled.View`
+const Card = styled.View`
   padding-vertical: 20px;
   background: white;
   border-radius: 9px;
@@ -150,7 +150,7 @@ class Activity extends Component {
     return (
       <Container>
         <Section>
-          <ListGroup>
+          <Card>
             <HeaderSection>
               <BackButton
                 onPress={() => {
@@ -212,7 +212,7 @@ class Activity extends Component {
               <ListNumber style={{ width: '20%' }}>0</ListNumber>
               <ListNumber style={{ width: '15%' }}>0</ListNumber>
             </ListItem>
-          </ListGroup>
+          </Card>
         </Section>
 
         <Section>

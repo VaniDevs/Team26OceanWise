@@ -50,6 +50,15 @@ export const StyledButtonShadow = styled.View`
   width: 240px;
   bottom: -10px;
 `;
+export const StyledButtonHalo = styled.View`
+  position: absolute;
+  height: 48px;
+  background: #ffe47c;
+  border-radius: 5px;
+  z-index: 0;
+  width: 240px;
+  bottom: -10px;
+`;
 export const ButtonTitle = styled.Text`
   color: ${colors.bg};
   font-family: ${fontFamily.plexMonoBold};
