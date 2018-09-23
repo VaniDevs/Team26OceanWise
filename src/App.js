@@ -1,40 +1,25 @@
 import React, { Component } from 'react';
-import { AsyncStorage } from 'react-native';
 
 import Navigation from './components/navigation';
 import { STORE_USER_CUPS_SAVED, STORE_FAV_CAFES, STORE_USER_ENVIRO_POINTS } from './constants';
+import { getData, storeData } from './storageUtils';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.getData(STORE_FAV_CAFES).then(value => {
-      // Initialize store if it doesn't exist
-      if (!value) {
-        const emptyArray = [];
-        this.storeData(STORE_USER_ENVIRO_POINTS, '0');
-        this.storeData(STORE_USER_CUPS_SAVED, '0');
-        this.storeData(STORE_FAV_CAFES, JSON.stringify(emptyArray));
-      }
-    });
+    getData(STORE_FAV_CAFES)
+      .then(value => {
+        // Initialize store if it doesn't exist
+        if (!value) {
+          const emptyArray = [];
+          storeData(STORE_USER_ENVIRO_POINTS, '0');
+          storeData(STORE_USER_CUPS_SAVED, '0');
+          storeData(STORE_FAV_CAFES, JSON.stringify(emptyArray));
+        }
+      })
+      .catch(() => console.log('Error initializing storage'));
   }
-
-  getData = async itemKey => {
-    try {
-      return await AsyncStorage.getItem(itemKey);
-    } catch (error) {
-      console.log('Error retrieving data: ', error);
-      return null;
-    }
-  };
-
-  storeData = async (itemKey, value) => {
-    try {
-      await AsyncStorage.setItem(itemKey, value);
-    } catch (error) {
-      console.log('Error saving data: ', error);
-    }
-  };
 
   render() {
     return <Navigation />;

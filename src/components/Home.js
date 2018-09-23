@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import AppProvider, { AppContext } from '../AppProvider';
+
 const Container = styled.View`
   flex: 1;
   justify-content: center;
@@ -26,15 +28,21 @@ const Subtitle = styled.Text`
 
 function Home() {
   return (
-    <Container>
-      <StyledButton>
-        <EnviroPoints>0</EnviroPoints>
-        <Subtitle>EnviroPoints</Subtitle>
-        <ButtonTitle>Activity</ButtonTitle>
-        <ButtonTitle>Locate</ButtonTitle>
-        <ButtonTitle>Activity</ButtonTitle>
-      </StyledButton>
-    </Container>
+    <AppProvider>
+      <AppContext.Consumer>
+        {context => (
+          <Container>
+            <EnviroPoints>{context.enviroPoints}</EnviroPoints>
+            <Subtitle>EnviroPoints</Subtitle>
+            <ButtonTitle>Activity</ButtonTitle>
+            <ButtonTitle>Locate</ButtonTitle>
+            <StyledButton>
+              <ButtonTitle>Activity</ButtonTitle>
+            </StyledButton>
+          </Container>
+        )}
+      </AppContext.Consumer>
+    </AppProvider>
   );
 }
 
