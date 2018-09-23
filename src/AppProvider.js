@@ -62,8 +62,8 @@ class AppProvider extends React.Component {
       this.setState({ favoriteCafes });
       storeData(STORE_FAV_CAFES, JSON.stringify(favoriteCafes));
     } else {
-      const initialFavCafes = [{ cafeRecord }];
-      this.setState({ initialFavCafes });
+      const initialFavCafes = [cafeRecord];
+      this.setState({ favoriteCafes: initialFavCafes });
       storeData(STORE_FAV_CAFES, JSON.stringify(initialFavCafes));
     }
   };

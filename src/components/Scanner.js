@@ -29,12 +29,22 @@ class ScanScreen extends Component {
     const { navigation } = this.props;
     const { enviroPoints, cupsSaved, togoQuantity, lidQuantity } = navigation.state.params;
     const prevAquiredPoints =
-      context.favoriteCafes && context.favoriteCafes.length > 0 ? context.favoriteCafes[0].points : 0;
+      context.favoriteCafes && context.favoriteCafes.length > 0 && context.favoriteCafes[0].points
+        ? context.favoriteCafes[0].points
+        : 0;
 
     context.addEnviroPoints(enviroPoints);
     context.addCupsSaved(cupsSaved);
 
-    const coffeeAmount = Number(cupsSaved || togoQuantity || lidQuantity) + prevAquiredPoints;
+    let coffeeAmount = prevAquiredPoints;
+
+    if (cupsSaved) {
+      coffeeAmount += Number(cupsSaved);
+    } else if (togoQuantity) {
+      coffeeAmount += Number(togoQuantity);
+    } else if (lidQuantity) {
+      coffeeAmount += Number(lidQuantity);
+    }
 
     // TODO use code.logo instead of hardcoded logo
     // and grab coffee house name from the URL
