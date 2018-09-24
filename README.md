@@ -1,4 +1,6 @@
-# Team 26 - Ocean Wise
+# Team Apply (#26) - Ocean Wise
+
+This repo holds the code to our project in VanHacks 2018. We created a digitized loyalty program focused on reducing single-use coffee cup usage, targeting independent coffee shops and their customers.  
 
 ## Setup Instructions
 
