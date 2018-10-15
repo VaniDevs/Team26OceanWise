@@ -2,6 +2,8 @@
 
 This repo holds the code to our project in VanHacks 2018. We created a digitized loyalty program focused on reducing single-use coffee cup usage, targeting independent coffee shops and their customers.  
 
+![](kafewiseApp.gif)
+
 ## Setup Instructions
 
 1. Clone this project
